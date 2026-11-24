@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T22:35:54Z",
+  "generatedAt": "2026-11-24T22:56:33Z",
   "sources": [
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/1.txt",
@@ -168,11 +168,15 @@
     }
   ],
   "uniqueInputLines": 458643,
-  "parsedCandidates": 235,
+  "parsedCandidates": 233,
   "parseErrors": 15,
-  "testedNodes": 235,
-  "reachableNodes": 11,
-  "publishedNodes": 11,
+  "testedNodes": 233,
+  "reachableNodes": 10,
+  "stableNodes": 10,
+  "testRounds": 3,
+  "requiredSuccessesPerNode": 6,
+  "deduplicatedCandidates": 233,
+  "publishedNodes": 10,
   "maxNodes": 250,
   "maxPublish": 100,
   "testUrls": [
@@ -180,55 +184,71 @@
     "https://cp.cloudflare.com/generate_204"
   ],
   "latencyMs": {
-    "min": 142,
-    "median": 463,
-    "max": 891
+    "min": 87,
+    "median": 374,
+    "max": 799
   },
   "topNodes": [
     {
-      "name": "trojan-231",
-      "delayMs": 142
-    },
-    {
       "name": "🇮🇱 @MrMeshkyChannel 747168",
-      "delayMs": 160
+      "medianDelayMs": 87,
+      "passedChecks": 6,
+      "requiredChecks": 6
     },
     {
-      "name": "vmess-240",
-      "delayMs": 168
+      "name": "trojan-231",
+      "medianDelayMs": 146,
+      "passedChecks": 6,
+      "requiredChecks": 6
     },
     {
       "name": "[13061][US][0][SS][None][proxy_mtm][2026-11-14][2026-11",
-      "delayMs": 194
+      "medianDelayMs": 184,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "vmess-240",
+      "medianDelayMs": 252,
+      "passedChecks": 6,
+      "requiredChecks": 6
     },
     {
       "name": "ss-208",
-      "delayMs": 389
-    },
-    {
-      "name": "By EbraSha-80",
-      "delayMs": 463
-    },
-    {
-      "name": "🇳🇱NL_93|6.0MB/s|C002-260622",
-      "delayMs": 476
+      "medianDelayMs": 309,
+      "passedChecks": 6,
+      "requiredChecks": 6
     },
     {
       "name": "[OpenRay] 🇳🇱NL-528",
-      "delayMs": 491
+      "medianDelayMs": 374,
+      "passedChecks": 6,
+      "requiredChecks": 6
     },
     {
-      "name": "4Jadi-919c095fc3",
-      "delayMs": 514
+      "name": "By EbraSha-80",
+      "medianDelayMs": 377,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🇳🇱NL_93|6.0MB/s|C002-260622",
+      "medianDelayMs": 379,
+      "passedChecks": 6,
+      "requiredChecks": 6
     },
     {
       "name": "[OpenRay] 🌐XX-1453",
-      "delayMs": 884
+      "medianDelayMs": 501,
+      "passedChecks": 6,
+      "requiredChecks": 6
     },
     {
       "name": "[6350][ZA][0][SS][None][ext_raw.githubusercontent.com][",
-      "delayMs": 891
+      "medianDelayMs": 799,
+      "passedChecks": 6,
+      "requiredChecks": 6
     }
   ],
-  "warning": "Public third-party nodes are untrusted. Tests run from GitHub Actions and do not guarantee reachability or speed from a user's device."
+  "warning": "Public third-party nodes are untrusted. Three-round tests check GitHub Actions reachability only; they do not establish throughput, privacy, or usability from the user's device."
 }

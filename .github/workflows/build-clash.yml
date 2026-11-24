@@ -2,6 +2,10 @@ name: Build Clash subscription
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/scripts/build_profile.py"
+      - ".github/workflows/build-clash.yml"
   schedule:
     - cron: "17 */4 * * *"
 

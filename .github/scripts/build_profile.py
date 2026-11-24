@@ -123,14 +123,23 @@ def api_delay(name, url, timeout_ms=7000):
         raise ValueError("invalid delay")
     return delay
 
-def test_one(proxy, urls):
-    errors = []
-    for url in urls:
-        try:
-            return {"name": proxy["name"], "delay": api_delay(proxy["name"], url), "testUrl": url}
-        except Exception as e:
-            errors.append(type(e).__name__)
-    return {"name": proxy["name"], "delay": None, "error": ",".join(errors)}
+def test_one(proxy, urls, rounds=3):
+    samples = []
+    for round_no in range(rounds):
+        round_delays = []
+        for url in urls:
+            try:
+                round_delays.append(api_delay(proxy["name"], url, timeout_ms=8000))
+            except Exception:
+                pass
+        samples.append(round_delays if len(round_delays) == len(urls) else None)
+        if round_no + 1 < rounds:
+            time.sleep(2)
+    valid = [x for group in samples if group for x in group]
+    stable = all(group is not None for group in samples)
+    return {"name": proxy["name"], "delay": int(sorted(valid)[len(valid)//2]) if valid else None,
+            "roundSamples": samples, "passedChecks": len(valid),
+            "requiredChecks": rounds * len(urls), "stable": stable}
 
 def main():
     all_lines=[]; source_status=[]
@@ -165,8 +174,18 @@ def main():
             p["name"]=n; names.add(n); proxies.append(p)
         except Exception:
             errors+=1
+    import hashlib
+    unique_proxies = []
+    signatures = set()
+    for p in proxies:
+        identity = {k: v for k, v in p.items() if k != "name"}
+        signature = hashlib.sha256(json.dumps(identity, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+        if signature not in signatures:
+            signatures.add(signature)
+            unique_proxies.append(p)
+    proxies = unique_proxies
     if not proxies:
-        raise SystemExit("No valid nodes parsed; refusing to publish an empty profile")
+        raise SystemExit("No valid unique nodes parsed; refusing to publish an empty profile")
 
     mihomo = os.getenv("MIHOMO_PATH", "mihomo")
     if not shutil.which(mihomo):
@@ -212,11 +231,11 @@ def main():
         results=[]
         workers=max(4, min(24, int(os.getenv("TEST_WORKERS", "16"))))
         with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
-            futures=[pool.submit(test_one, p, test_urls) for p in proxies]
+            futures=[pool.submit(test_one, p, test_urls, 3) for p in proxies]
             for future in concurrent.futures.as_completed(futures):
                 results.append(future.result())
         by_name={r["name"]:r for r in results}
-        good=[p for p in proxies if by_name.get(p["name"],{}).get("delay") is not None]
+        good=[p for p in proxies if by_name.get(p["name"],{}).get("stable") is True]
         good.sort(key=lambda p: by_name[p["name"]]["delay"])
         # Keep only nodes that completed a real proxied HTTP request; never fall back
         # to publishing syntax-only candidates.
@@ -241,12 +260,14 @@ def main():
         report={"generatedAt":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),
                 "sources":source_status,"uniqueInputLines":len(seen),
                 "parsedCandidates":len(proxies),"parseErrors":errors,
-                "testedNodes":len(results),"reachableNodes":len(results)-sum(1 for r in results if r["delay"] is None),
+                "testedNodes":len(results),"reachableNodes":sum(1 for r in results if r.get("delay") is not None),
+                "stableNodes":sum(1 for r in results if r.get("stable") is True),
+                "testRounds":3,"requiredSuccessesPerNode":6,"deduplicatedCandidates":len(proxies),
                 "publishedNodes":len(good),"maxNodes":MAX_NODES,
                 "maxPublish":max_publish,"testUrls":test_urls,
                 "latencyMs":{"min":min(delays),"median":sorted(delays)[len(delays)//2],"max":max(delays)},
-                "topNodes":[{"name":p["name"],"delayMs":by_name[p["name"]]["delay"]} for p in good[:20]],
-                "warning":"Public third-party nodes are untrusted. Tests run from GitHub Actions and do not guarantee reachability or speed from a user's device."}
+                "topNodes":[{"name":p["name"],"medianDelayMs":by_name[p["name"]]["delay"],"passedChecks":by_name[p["name"]]["passedChecks"],"requiredChecks":by_name[p["name"]]["requiredChecks"]} for p in good[:20]],
+                "warning":"Public third-party nodes are untrusted. Three-round tests check GitHub Actions reachability only; they do not establish throughput, privacy, or usability from the user's device."}
         (OUT/"status.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
         print(f"Live-tested {len(results)} nodes; {len(good)} passed and published.")
     finally:

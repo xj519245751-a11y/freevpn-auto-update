@@ -1,0 +1,175 @@
+{
+  "generatedAt": "2026-11-24T21:14:07Z",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/1.txt",
+      "status": "ok",
+      "entries": 5589
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/2.txt",
+      "status": "ok",
+      "entries": 405406
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/3.txt",
+      "status": "ok",
+      "entries": 9684
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/4.txt",
+      "status": "ok",
+      "entries": 284
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/5.txt",
+      "status": "ok",
+      "entries": 235
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/6.txt",
+      "status": "ok",
+      "entries": 93
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/7.txt",
+      "status": "ok",
+      "entries": 641
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/8.txt",
+      "status": "ok",
+      "entries": 304
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/9.txt",
+      "status": "ok",
+      "entries": 240
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/10.txt",
+      "status": "ok",
+      "entries": 9031
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/11.txt",
+      "status": "ok",
+      "entries": 591
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/12.txt",
+      "status": "ok",
+      "entries": 706
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/13.txt",
+      "status": "ok",
+      "entries": 945
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/14.txt",
+      "status": "ok",
+      "entries": 17810
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/15.txt",
+      "status": "ok",
+      "entries": 441
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/16.txt",
+      "status": "ok",
+      "entries": 6
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/17.txt",
+      "status": "ok",
+      "entries": 1445
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/18.txt",
+      "status": "ok",
+      "entries": 97
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/19.txt",
+      "status": "ok",
+      "entries": 1626
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/20.txt",
+      "status": "ok",
+      "entries": 2323
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/21.txt",
+      "status": "ok",
+      "entries": 33486
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/22.txt",
+      "status": "ok",
+      "entries": 210
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/23.txt",
+      "status": "ok",
+      "entries": 719
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/24.txt",
+      "status": "ok",
+      "entries": 774
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/25.txt",
+      "status": "ok",
+      "entries": 258
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/26.txt",
+      "status": "ok",
+      "entries": 4435
+    },
+    {
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_SS%2BAll_RUS.txt",
+      "status": "ok",
+      "entries": 73
+    },
+    {
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS.txt",
+      "status": "ok",
+      "entries": 199
+    },
+    {
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt",
+      "status": "ok",
+      "entries": 149
+    },
+    {
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
+      "status": "ok",
+      "entries": 101
+    },
+    {
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-CIDR-RU-all.txt",
+      "status": "ok",
+      "entries": 113
+    },
+    {
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-CIDR-RU-checked.txt",
+      "status": "ok",
+      "entries": 7
+    },
+    {
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-SNI-RU-all.txt",
+      "status": "ok",
+      "entries": 6
+    }
+  ],
+  "uniqueInputLines": 458593,
+  "publishedNodes": 243,
+  "parseErrors": 7,
+  "maxNodes": 250,
+  "warning": "Syntax-filtered public third-party nodes only; no trust or reachability guarantee."
+}

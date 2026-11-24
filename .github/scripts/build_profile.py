@@ -5,7 +5,7 @@ This checks syntax and provenance only. It does NOT prove that a public node is
 safe, private, or reachable. Never put personal credentials in source feeds.
 """
 from __future__ import annotations
-import base64, json, os, re, time, subprocess, tempfile, shutil, concurrent.futures
+import base64, json, os, re, time, subprocess, tempfile, shutil, concurrent.futures, uuid
 from urllib.parse import urlsplit, parse_qs, unquote
 from urllib.request import Request, urlopen
 from pathlib import Path
@@ -153,6 +153,12 @@ def main():
     for i,line in enumerate(candidates,1):
         try:
             p=parse_uri(line,i)
+            if not p.get("server") or not (1 <= int(p.get("port", 0)) <= 65535):
+                raise ValueError("invalid server or port")
+            if p.get("type") in ("vless", "vmess"):
+                uuid.UUID(str(p.get("uuid", "")))
+            if p.get("reality-opts") and not p["reality-opts"].get("public-key"):
+                raise ValueError("missing Reality public key")
             base=p["name"]; n=base; k=2
             while n in names:
                 n=f"{base[:48]}-{k}"; k+=1

@@ -116,8 +116,7 @@ def parse_uri(line, idx):
 def api_delay(name, url, timeout_ms=7000):
     from urllib.parse import quote
     endpoint = f"http://127.0.0.1:9090/proxies/{quote(name, safe='')}/delay?url={quote(url, safe='')}&timeout={timeout_ms}"
-    req = Request(endpoint, headers={"Authorization": "Bearer"})
-    with urlopen(req, timeout=(timeout_ms / 1000) + 5) as r:
+    with urlopen(endpoint, timeout=(timeout_ms / 1000) + 5) as r:
         data = json.loads(r.read().decode("utf-8"))
     delay = int(data.get("delay", 0))
     if delay <= 0:

@@ -4,123 +4,75 @@ mode: rule
 log-level: warning
 ipv6: false
 proxies:
+- name: vmess-2
+  type: vmess
+  server: 104.18.42.163
+  port: 443
+  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
+  alterId: 0
+  cipher: auto
+  udp: true
+  network: ws
+  ws-opts:
+    path: /hls/cctv5phd.m3u8
+    headers:
+      Host: guanwang.awsno.com
+  tls: true
+  servername: guanwang.awsno.com
 - name: vmess-240
   type: vmess
-  server: 169.197.142.22
+  server: 38.110.1.246
   port: 18000
   uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
   alterId: 0
   cipher: auto
   udp: true
-- name: trojan-231
+- name: IRAN_V2PING@
   type: trojan
-  server: 170.101.101.237
+  server: 216.152.147.48
   port: 443
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   udp: true
-  sni: cdn.explorecreativejobsandenhanceyourcareerportfolio.com
-- name: '[13061][US][0][SS][None][proxy_mtm][2026-11-14][2026-11'
+  sni: courses.connectingpeoplewithgreatjobs.com
+- name: '@meliproxyy'
+  type: vless
+  server: 51.158.206.26
+  port: 23576
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  udp: true
+  tls: true
+  servername: fuck.rkn
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  client-fingerprint: chrome
+  flow: xtls-rprx-vision
+- name: '[6928][GB][0][SS][None][ext_raw.githubusercontent.com]['
   type: ss
-  server: 185.215.132.18
-  port: 19999
-  cipher: aes-256-gcm
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  udp: true
-- name: 🇮🇱 @MrMeshkyChannel 747168
-  type: vless
-  server: 185.95.231.156
-  port: 443
-  uuid: 1f8cf47a-b66a-4916-979f-26edfcf44eea
-  udp: true
-  tls: true
-  servername: www.apple.com
-  reality-opts:
-    public-key: 8eXftARun6KH38UZhuqIfPR1VF2DLS9RMBZEnF5k6To
-    short-id: a3a578ab
-  client-fingerprint: chrome
-  flow: xtls-rprx-vision
-- name: 🇳🇱NL_93|6.0MB/s|C002-260622
-  type: vless
-  server: 51.158.206.86
-  port: 23576
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-  udp: true
-  tls: true
-  servername: fuck.rkn
-  reality-opts:
-    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
-    short-id: '01'
-  client-fingerprint: chrome
-  flow: xtls-rprx-vision
-- name: By EbraSha-80
-  type: vless
-  server: 51.158.206.96
-  port: 23576
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-  udp: true
-  tls: true
-  servername: fuck.rkn
-  reality-opts:
-    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
-    short-id: '01'
-  client-fingerprint: chrome
-  flow: xtls-rprx-vision
-- name: '[OpenRay] 🌐XX-1453'
-  type: vless
-  server: 1c.hlclub.tech
-  port: 27020
-  uuid: d199d953-be71-4e19-807b-7df54286733f
-  udp: true
-  tls: true
-  servername: 1c.hlclub.tech
-  reality-opts:
-    public-key: XxWn04baea-nyjxLud3mjo15Xz1DNwlDOOken4qHNVA
-    short-id: 555ac69b22424282
-  client-fingerprint: chrome
-  network: grpc
-  grpc-opts:
-    grpc-service-name: grpc-tunnel
-- name: '[OpenRay] 🇳🇱NL-528'
-  type: vless
-  server: 51.158.206.86
-  port: 23576
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-  udp: true
-  tls: true
-  servername: fuck.rkn
-  reality-opts:
-    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
-    short-id: '01'
-  client-fingerprint: firefox
-  flow: xtls-rprx-vision
-- name: ss-208
-  type: ss
-  server: 82.38.31.195
+  server: 82.38.31.219
   port: 8080
   cipher: chacha20-ietf-poly1305
   password: k1dBOmOB4oqi7Ump37a1bQ
   udp: true
-- name: '[6350][ZA][0][SS][None][ext_raw.githubusercontent.com]['
-  type: ss
-  server: 102.37.156.224
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: aduB9HGxQHjA2SBMRjkHX6
+- name: 🇩🇪DE_95|1.1MB/s|M003-260806
+  type: vless
+  server: uuyjnfbv.localip.ir
+  port: 2087
+  uuid: 92a188aa-2e86-4557-bd30-b2079a70f824
   udp: true
+  tls: true
+  servername: uuyjnfbv.localip.ir
+  client-fingerprint: chrome
 proxy-groups:
 - name: AUTO
   type: url-test
   proxies:
+  - vmess-2
   - vmess-240
-  - trojan-231
-  - '[13061][US][0][SS][None][proxy_mtm][2026-11-14][2026-11'
-  - 🇮🇱 @MrMeshkyChannel 747168
-  - 🇳🇱NL_93|6.0MB/s|C002-260622
-  - By EbraSha-80
-  - '[OpenRay] 🌐XX-1453'
-  - '[OpenRay] 🇳🇱NL-528'
-  - ss-208
-  - '[6350][ZA][0][SS][None][ext_raw.githubusercontent.com]['
+  - IRAN_V2PING@
+  - '@meliproxyy'
+  - '[6928][GB][0][SS][None][ext_raw.githubusercontent.com]['
+  - 🇩🇪DE_95|1.1MB/s|M003-260806
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 100
@@ -128,15 +80,11 @@ proxy-groups:
   type: select
   proxies:
   - AUTO
+  - vmess-2
   - vmess-240
-  - trojan-231
-  - '[13061][US][0][SS][None][proxy_mtm][2026-11-14][2026-11'
-  - 🇮🇱 @MrMeshkyChannel 747168
-  - 🇳🇱NL_93|6.0MB/s|C002-260622
-  - By EbraSha-80
-  - '[OpenRay] 🌐XX-1453'
-  - '[OpenRay] 🇳🇱NL-528'
-  - ss-208
-  - '[6350][ZA][0][SS][None][ext_raw.githubusercontent.com]['
+  - IRAN_V2PING@
+  - '@meliproxyy'
+  - '[6928][GB][0][SS][None][ext_raw.githubusercontent.com]['
+  - 🇩🇪DE_95|1.1MB/s|M003-260806
 rules:
 - MATCH,PROXY

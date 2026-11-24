@@ -141,6 +141,35 @@ def test_one(proxy, urls, rounds=3):
             "roundSamples": samples, "passedChecks": len(valid),
             "requiredChecks": rounds * len(urls), "stable": stable}
 
+def download_probe(proxy_name, url, timeout_seconds=20):
+    """Measure a small proxied download through the local Mihomo mixed port."""
+    from urllib.parse import quote
+    endpoint = f"http://127.0.0.1:9090/proxies/PROBE"
+    payload = json.dumps({"name": proxy_name}).encode("utf-8")
+    req = Request(endpoint, data=payload, headers={"Content-Type": "application/json"}, method="PUT")
+    with urlopen(req, timeout=5) as response:
+        if response.status not in (200, 204):
+            raise RuntimeError("Mihomo proxy selection failed")
+    probe_url = os.getenv("SPEED_TEST_URL", "https://speed.cloudflare.com/__down?bytes=524288")
+    started = time.monotonic()
+    handlers = [__import__("urllib.request", fromlist=["ProxyHandler"]).ProxyHandler({
+        "http": "http://127.0.0.1:17890", "https": "http://127.0.0.1:17890"
+    })]
+    opener = __import__("urllib.request", fromlist=["build_opener"]).build_opener(*handlers)
+    req = Request(probe_url, headers={"User-Agent": "freevpn-auto-update-speedcheck/2.2"})
+    total = 0
+    with opener.open(req, timeout=timeout_seconds) as response:
+        while True:
+            chunk = response.read(65536)
+            if not chunk:
+                break
+            total += len(chunk)
+    elapsed = max(time.monotonic() - started, 0.001)
+    if total < 262144:
+        raise RuntimeError("download sample too small")
+    return {"bytes": total, "durationMs": int(elapsed * 1000),
+            "throughputMbps": round(total * 8 / elapsed / 1_000_000, 3)}
+
 def main():
     all_lines=[]; source_status=[]
     for url in SOURCES:
@@ -198,7 +227,9 @@ def main():
             "mixed-port": 17890, "allow-lan": False, "mode": "rule",
             "log-level": "error", "ipv6": False,
             "external-controller": "127.0.0.1:9090",
-            "proxies": proxies, "rules": ["MATCH,DIRECT"]
+            "proxies": proxies,
+            "proxy-groups": [{"name": "PROBE", "type": "select", "proxies": [p["name"] for p in proxies]}],
+            "rules": ["MATCH,PROBE"]
         }
         import yaml
         config_path = os.path.join(work, "config.yaml")
@@ -236,7 +267,20 @@ def main():
                 results.append(future.result())
         by_name={r["name"]:r for r in results}
         good=[p for p in proxies if by_name.get(p["name"],{}).get("stable") is True]
-        good.sort(key=lambda p: by_name[p["name"]]["delay"])
+        # Small serial download probe: one 512 KiB sample per stable candidate.
+        # This ranks GitHub-runner throughput only; it is not a phone/network guarantee.
+        speed_results = {}
+        speed_url = os.getenv("SPEED_TEST_URL", "https://speed.cloudflare.com/__down?bytes=524288")
+        for p in good:
+            try:
+                speed_results[p["name"]] = download_probe(p["name"], speed_url)
+            except Exception as exc:
+                speed_results[p["name"]] = {"error": type(exc).__name__, "throughputMbps": None}
+        good.sort(key=lambda p: (
+            speed_results.get(p["name"], {}).get("throughputMbps") is None,
+            -(speed_results.get(p["name"], {}).get("throughputMbps") or 0),
+            by_name[p["name"]]["delay"]
+        ))
         # Keep only nodes that completed a real proxied HTTP request; never fall back
         # to publishing syntax-only candidates.
         if not good:
@@ -263,11 +307,19 @@ def main():
                 "testedNodes":len(results),"reachableNodes":sum(1 for r in results if r.get("delay") is not None),
                 "stableNodes":sum(1 for r in results if r.get("stable") is True),
                 "testRounds":3,"requiredSuccessesPerNode":6,"deduplicatedCandidates":len(proxies),
+                "speedTest":{"url":speed_url,"sampleBytesTarget":524288,
+                             "successful":sum(1 for v in speed_results.values() if v.get("throughputMbps") is not None),
+                             "failed":sum(1 for v in speed_results.values() if v.get("throughputMbps") is None),
+                             "scope":"GitHub Actions runner only; not representative of the user's device/network"},
                 "publishedNodes":len(good),"maxNodes":MAX_NODES,
                 "maxPublish":max_publish,"testUrls":test_urls,
                 "latencyMs":{"min":min(delays),"median":sorted(delays)[len(delays)//2],"max":max(delays)},
-                "topNodes":[{"name":p["name"],"medianDelayMs":by_name[p["name"]]["delay"],"passedChecks":by_name[p["name"]]["passedChecks"],"requiredChecks":by_name[p["name"]]["requiredChecks"]} for p in good[:20]],
-                "warning":"Public third-party nodes are untrusted. Three-round tests check GitHub Actions reachability only; they do not establish throughput, privacy, or usability from the user's device."}
+                "topNodes":[{"name":p["name"],"medianDelayMs":by_name[p["name"]]["delay"],
+                             "throughputMbps":speed_results.get(p["name"],{}).get("throughputMbps"),
+                             "speedTestError":speed_results.get(p["name"],{}).get("error"),
+                             "passedChecks":by_name[p["name"]]["passedChecks"],
+                             "requiredChecks":by_name[p["name"]]["requiredChecks"]} for p in good[:20]],
+                "warning":"Public third-party nodes are untrusted. Stability and download throughput are measured from GitHub Actions only; they do not establish privacy or usability/speed from the user's device."}
         (OUT/"status.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
         print(f"Live-tested {len(results)} nodes; {len(good)} passed and published.")
     finally:

@@ -35,7 +35,7 @@ jobs:
           req = urllib.request.Request(asset["browser_download_url"], headers={"User-Agent": "freevpn-auto-update"})
           with urllib.request.urlopen(req, timeout=90) as r:
               compressed = r.read()
-          with gzip.decompress(compressed) as_unused if False else open("/tmp/mihomo.gz", "wb") as f:
+          with open("/tmp/mihomo.gz", "wb") as f:
               f.write(compressed)
           with gzip.open("/tmp/mihomo.gz", "rb") as src, open("/usr/local/bin/mihomo", "wb") as dst:
               dst.write(src.read())

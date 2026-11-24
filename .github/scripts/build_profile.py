@@ -285,6 +285,15 @@ def main():
         # to publishing syntax-only candidates.
         if not good:
             raise SystemExit("No nodes passed live proxy tests; existing published subscription is left untouched")
+        # Detect likely shared backends/credentials without deleting candidates.
+        # This is diagnostic only: different server IPs may still be independent exits.
+        near_groups = {}
+        for p in good:
+            identity = {k: v for k, v in p.items()
+                        if k not in ("name", "server", "client-fingerprint")}
+            sig = hashlib.sha256(json.dumps(identity, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+            near_groups.setdefault(sig, []).append({"name": p["name"], "server": p.get("server")})
+        near_duplicate_groups = [items for items in near_groups.values() if len(items) > 1]
         max_publish=int(os.getenv("MAX_PUBLISH", "100"))
         good=good[:max_publish]
         profile={
@@ -311,6 +320,8 @@ def main():
                              "successful":sum(1 for v in speed_results.values() if v.get("throughputMbps") is not None),
                              "failed":sum(1 for v in speed_results.values() if v.get("throughputMbps") is None),
                              "scope":"GitHub Actions runner only; not representative of the user's device/network"},
+                "nearDuplicateGroups":near_duplicate_groups,
+                "nearDuplicatePolicy":"diagnostic only; candidates are retained until device-side validation",
                 "publishedNodes":len(good),"maxNodes":MAX_NODES,
                 "maxPublish":max_publish,"testUrls":test_urls,
                 "latencyMs":{"min":min(delays),"median":sorted(delays)[len(delays)//2],"max":max(delays)},

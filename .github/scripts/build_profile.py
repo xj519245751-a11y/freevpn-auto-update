@@ -103,7 +103,14 @@ def parse_uri(line, idx):
         else:
             method=dec64(user) if ":" not in user else user
             if ":" in method: method,password=method.split(":",1)
-        return {"name":name,"type":"ss","server":host,"port":port,"cipher":method,"password":unquote(password),"udp":True}
+        # Reject malformed/unknown cipher labels from noisy public feeds.
+        allowed = {"aes-128-gcm","aes-192-gcm","aes-256-gcm","chacha20-ietf-poly1305",
+                   "2022-blake3-aes-128-gcm","2022-blake3-aes-256-gcm",
+                   "aes-128-cfb","aes-192-cfb","aes-256-cfb","chacha20-ietf",
+                   "xchacha20-ietf-poly1305"}
+        if method.lower() not in allowed or not password:
+            raise ValueError("unsupported or malformed SS cipher/password")
+        return {"name":name,"type":"ss","server":host,"port":port,"cipher":method.lower(),"password":unquote(password),"udp":True}
     raise ValueError("unsupported scheme")
 
 def main():

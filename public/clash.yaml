@@ -4,19 +4,14 @@ mode: rule
 log-level: warning
 ipv6: false
 proxies:
-- name: 🇮🇱 @MrMeshkyChannel 747168
-  type: vless
-  server: 185.95.231.156
-  port: 443
-  uuid: 1f8cf47a-b66a-4916-979f-26edfcf44eea
+- name: vmess-240
+  type: vmess
+  server: 169.197.142.22
+  port: 18000
+  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
+  alterId: 0
+  cipher: auto
   udp: true
-  tls: true
-  servername: www.apple.com
-  reality-opts:
-    public-key: 8eXftARun6KH38UZhuqIfPR1VF2DLS9RMBZEnF5k6To
-    short-id: a3a578ab
-  client-fingerprint: chrome
-  flow: xtls-rprx-vision
 - name: trojan-231
   type: trojan
   server: 170.101.101.237
@@ -31,37 +26,22 @@ proxies:
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: vmess-240
-  type: vmess
-  server: 169.197.142.22
-  port: 18000
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
-  alterId: 0
-  cipher: auto
-  udp: true
-- name: ss-208
-  type: ss
-  server: 82.38.31.195
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: '[OpenRay] 🇳🇱NL-528'
+- name: 🇮🇱 @MrMeshkyChannel 747168
   type: vless
-  server: 51.158.206.86
-  port: 23576
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  server: 185.95.231.156
+  port: 443
+  uuid: 1f8cf47a-b66a-4916-979f-26edfcf44eea
   udp: true
   tls: true
-  servername: fuck.rkn
+  servername: www.apple.com
   reality-opts:
-    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
-    short-id: '01'
-  client-fingerprint: firefox
+    public-key: 8eXftARun6KH38UZhuqIfPR1VF2DLS9RMBZEnF5k6To
+    short-id: a3a578ab
+  client-fingerprint: chrome
   flow: xtls-rprx-vision
-- name: By EbraSha-80
+- name: 🇳🇱NL_93|6.0MB/s|C002-260622
   type: vless
-  server: 51.158.206.96
+  server: 51.158.206.86
   port: 23576
   uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
   udp: true
@@ -72,9 +52,9 @@ proxies:
     short-id: '01'
   client-fingerprint: chrome
   flow: xtls-rprx-vision
-- name: 🇳🇱NL_93|6.0MB/s|C002-260622
+- name: By EbraSha-80
   type: vless
-  server: 51.158.206.86
+  server: 51.158.206.96
   port: 23576
   uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
   udp: true
@@ -100,6 +80,26 @@ proxies:
   network: grpc
   grpc-opts:
     grpc-service-name: grpc-tunnel
+- name: '[OpenRay] 🇳🇱NL-528'
+  type: vless
+  server: 51.158.206.86
+  port: 23576
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  udp: true
+  tls: true
+  servername: fuck.rkn
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  client-fingerprint: firefox
+  flow: xtls-rprx-vision
+- name: ss-208
+  type: ss
+  server: 82.38.31.195
+  port: 8080
+  cipher: chacha20-ietf-poly1305
+  password: k1dBOmOB4oqi7Ump37a1bQ
+  udp: true
 - name: '[6350][ZA][0][SS][None][ext_raw.githubusercontent.com]['
   type: ss
   server: 102.37.156.224
@@ -111,15 +111,15 @@ proxy-groups:
 - name: AUTO
   type: url-test
   proxies:
-  - 🇮🇱 @MrMeshkyChannel 747168
+  - vmess-240
   - trojan-231
   - '[13061][US][0][SS][None][proxy_mtm][2026-11-14][2026-11'
-  - vmess-240
-  - ss-208
-  - '[OpenRay] 🇳🇱NL-528'
-  - By EbraSha-80
+  - 🇮🇱 @MrMeshkyChannel 747168
   - 🇳🇱NL_93|6.0MB/s|C002-260622
+  - By EbraSha-80
   - '[OpenRay] 🌐XX-1453'
+  - '[OpenRay] 🇳🇱NL-528'
+  - ss-208
   - '[6350][ZA][0][SS][None][ext_raw.githubusercontent.com]['
   url: https://www.gstatic.com/generate_204
   interval: 300
@@ -128,15 +128,15 @@ proxy-groups:
   type: select
   proxies:
   - AUTO
-  - 🇮🇱 @MrMeshkyChannel 747168
+  - vmess-240
   - trojan-231
   - '[13061][US][0][SS][None][proxy_mtm][2026-11-14][2026-11'
-  - vmess-240
-  - ss-208
-  - '[OpenRay] 🇳🇱NL-528'
-  - By EbraSha-80
+  - 🇮🇱 @MrMeshkyChannel 747168
   - 🇳🇱NL_93|6.0MB/s|C002-260622
+  - By EbraSha-80
   - '[OpenRay] 🌐XX-1453'
+  - '[OpenRay] 🇳🇱NL-528'
+  - ss-208
   - '[6350][ZA][0][SS][None][ext_raw.githubusercontent.com]['
 rules:
 - MATCH,PROXY

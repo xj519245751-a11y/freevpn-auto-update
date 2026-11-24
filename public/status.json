@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T22:56:33Z",
+  "generatedAt": "2026-11-24T23:09:28Z",
   "sources": [
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/1.txt",
@@ -176,6 +176,13 @@
   "testRounds": 3,
   "requiredSuccessesPerNode": 6,
   "deduplicatedCandidates": 233,
+  "speedTest": {
+    "url": "https://speed.cloudflare.com/__down?bytes=524288",
+    "sampleBytesTarget": 524288,
+    "successful": 10,
+    "failed": 0,
+    "scope": "GitHub Actions runner only; not representative of the user's device/network"
+  },
   "publishedNodes": 10,
   "maxNodes": 250,
   "maxPublish": 100,
@@ -184,71 +191,91 @@
     "https://cp.cloudflare.com/generate_204"
   ],
   "latencyMs": {
-    "min": 87,
-    "median": 374,
-    "max": 799
+    "min": 274,
+    "median": 594,
+    "max": 1735
   },
   "topNodes": [
     {
-      "name": "🇮🇱 @MrMeshkyChannel 747168",
-      "medianDelayMs": 87,
+      "name": "vmess-240",
+      "medianDelayMs": 1735,
+      "throughputMbps": 29.152,
+      "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "trojan-231",
-      "medianDelayMs": 146,
+      "medianDelayMs": 281,
+      "throughputMbps": 7.154,
+      "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "[13061][US][0][SS][None][proxy_mtm][2026-11-14][2026-11",
-      "medianDelayMs": 184,
+      "medianDelayMs": 274,
+      "throughputMbps": 7.13,
+      "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
-      "name": "vmess-240",
-      "medianDelayMs": 252,
-      "passedChecks": 6,
-      "requiredChecks": 6
-    },
-    {
-      "name": "ss-208",
-      "medianDelayMs": 309,
-      "passedChecks": 6,
-      "requiredChecks": 6
-    },
-    {
-      "name": "[OpenRay] 🇳🇱NL-528",
-      "medianDelayMs": 374,
-      "passedChecks": 6,
-      "requiredChecks": 6
-    },
-    {
-      "name": "By EbraSha-80",
-      "medianDelayMs": 377,
+      "name": "🇮🇱 @MrMeshkyChannel 747168",
+      "medianDelayMs": 294,
+      "throughputMbps": 3.305,
+      "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "🇳🇱NL_93|6.0MB/s|C002-260622",
-      "medianDelayMs": 379,
+      "medianDelayMs": 594,
+      "throughputMbps": 3.298,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "By EbraSha-80",
+      "medianDelayMs": 591,
+      "throughputMbps": 3.194,
+      "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "[OpenRay] 🌐XX-1453",
-      "medianDelayMs": 501,
+      "medianDelayMs": 689,
+      "throughputMbps": 3.119,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "[OpenRay] 🇳🇱NL-528",
+      "medianDelayMs": 610,
+      "throughputMbps": 3.111,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "ss-208",
+      "medianDelayMs": 485,
+      "throughputMbps": 3.046,
+      "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "[6350][ZA][0][SS][None][ext_raw.githubusercontent.com][",
-      "medianDelayMs": 799,
+      "medianDelayMs": 976,
+      "throughputMbps": 1.858,
+      "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     }
   ],
-  "warning": "Public third-party nodes are untrusted. Three-round tests check GitHub Actions reachability only; they do not establish throughput, privacy, or usability from the user's device."
+  "warning": "Public third-party nodes are untrusted. Stability and download throughput are measured from GitHub Actions only; they do not establish privacy or usability/speed from the user's device."
 }

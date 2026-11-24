@@ -5,7 +5,7 @@ This checks syntax and provenance only. It does NOT prove that a public node is
 safe, private, or reachable. Never put personal credentials in source feeds.
 """
 from __future__ import annotations
-import base64, json, os, re, time
+import base64, json, os, re, time, subprocess, tempfile, shutil, concurrent.futures
 from urllib.parse import urlsplit, parse_qs, unquote
 from urllib.request import Request, urlopen
 from pathlib import Path
@@ -113,6 +113,26 @@ def parse_uri(line, idx):
         return {"name":name,"type":"ss","server":host,"port":port,"cipher":method.lower(),"password":unquote(password),"udp":True}
     raise ValueError("unsupported scheme")
 
+def api_delay(name, url, timeout_ms=7000):
+    from urllib.parse import quote
+    endpoint = f"http://127.0.0.1:9090/proxies/{quote(name, safe='')}/delay?url={quote(url, safe='')}&timeout={timeout_ms}"
+    req = Request(endpoint, headers={"Authorization": "Bearer"})
+    with urlopen(req, timeout=(timeout_ms / 1000) + 5) as r:
+        data = json.loads(r.read().decode("utf-8"))
+    delay = int(data.get("delay", 0))
+    if delay <= 0:
+        raise ValueError("invalid delay")
+    return delay
+
+def test_one(proxy, urls):
+    errors = []
+    for url in urls:
+        try:
+            return {"name": proxy["name"], "delay": api_delay(proxy["name"], url), "testUrl": url}
+        except Exception as e:
+            errors.append(type(e).__name__)
+    return {"name": proxy["name"], "delay": None, "error": ",".join(errors)}
+
 def main():
     all_lines=[]; source_status=[]
     for url in SOURCES:
@@ -128,7 +148,6 @@ def main():
         if line not in seen:
             seen.add(line); candidates.append(line)
     proxies=[]; names=set(); errors=0
-    # Evenly sample across the combined source order to cap profile size.
     if len(candidates)>MAX_NODES:
         step=len(candidates)/MAX_NODES
         candidates=[candidates[int(i*step)] for i in range(MAX_NODES)]
@@ -143,27 +162,93 @@ def main():
             errors+=1
     if not proxies:
         raise SystemExit("No valid nodes parsed; refusing to publish an empty profile")
-    profile={
-      "mixed-port":7890,"allow-lan":False,"mode":"rule","log-level":"warning",
-      "ipv6":False,
-      "proxies":proxies,
-      "proxy-groups":[
-        {"name":"AUTO","type":"url-test","proxies":[p["name"] for p in proxies],
-         "url":"https://www.gstatic.com/generate_204","interval":300,"tolerance":100},
-        {"name":"PROXY","type":"select","proxies":["AUTO"]+[p["name"] for p in proxies]},
-      ],
-      "rules":["MATCH,PROXY"]
-    }
-    OUT.mkdir(exist_ok=True)
+
+    mihomo = os.getenv("MIHOMO_PATH", "mihomo")
+    if not shutil.which(mihomo):
+        raise SystemExit("Mihomo binary not found; refusing to publish untested nodes")
+
+    work = tempfile.mkdtemp(prefix="mihomo-health-")
+    proc = None
     try:
+        test_config = {
+            "mixed-port": 17890, "allow-lan": False, "mode": "rule",
+            "log-level": "error", "ipv6": False,
+            "external-controller": "127.0.0.1:9090",
+            "proxies": proxies, "rules": ["MATCH,DIRECT"]
+        }
         import yaml
-    except ImportError:
-        raise SystemExit("PyYAML missing")
-    (OUT/"clash.yaml").write_text(yaml.safe_dump(profile,allow_unicode=True,sort_keys=False),encoding="utf-8")
-    report={"generatedAt":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),
-            "sources":source_status,"uniqueInputLines":len(seen),"publishedNodes":len(proxies),
-            "parseErrors":errors,"maxNodes":MAX_NODES,
-            "warning":"Syntax-filtered public third-party nodes only; no trust or reachability guarantee."}
-    (OUT/"status.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print(f"Published {len(proxies)} parsed nodes; {errors} parse failures; {len(source_status)} sources checked.")
+        config_path = os.path.join(work, "config.yaml")
+        with open(config_path, "w", encoding="utf-8") as fp:
+            yaml.safe_dump(test_config, fp, allow_unicode=True, sort_keys=False)
+        log_path = os.path.join(work, "mihomo.log")
+        log_file = open(log_path, "w", encoding="utf-8")
+        proc = subprocess.Popen([mihomo, "-d", work, "-f", config_path],
+                                stdout=log_file, stderr=subprocess.STDOUT)
+        ready = False
+        for _ in range(30):
+            if proc.poll() is not None:
+                break
+            try:
+                with urlopen("http://127.0.0.1:9090/version", timeout=1) as r:
+                    if r.status == 200:
+                        ready = True
+                        break
+            except Exception:
+                time.sleep(1)
+        if not ready:
+            log_file.close()
+            tail = open(log_path, encoding="utf-8", errors="replace").read()[-3000:]
+            raise SystemExit("Mihomo failed to start; no nodes published. " + tail[-1000:])
+
+        test_urls = [
+            os.getenv("TEST_URL_PRIMARY", "https://www.gstatic.com/generate_204"),
+            os.getenv("TEST_URL_FALLBACK", "https://cp.cloudflare.com/generate_204")
+        ]
+        results=[]
+        workers=max(4, min(24, int(os.getenv("TEST_WORKERS", "16"))))
+        with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
+            futures=[pool.submit(test_one, p, test_urls) for p in proxies]
+            for future in concurrent.futures.as_completed(futures):
+                results.append(future.result())
+        by_name={r["name"]:r for r in results}
+        good=[p for p in proxies if by_name.get(p["name"],{}).get("delay") is not None]
+        good.sort(key=lambda p: by_name[p["name"]]["delay"])
+        # Keep only nodes that completed a real proxied HTTP request; never fall back
+        # to publishing syntax-only candidates.
+        if not good:
+            raise SystemExit("No nodes passed live proxy tests; existing published subscription is left untouched")
+        max_publish=int(os.getenv("MAX_PUBLISH", "100"))
+        good=good[:max_publish]
+        profile={
+          "mixed-port":7890,"allow-lan":False,"mode":"rule","log-level":"warning",
+          "ipv6":False,
+          "proxies":good,
+          "proxy-groups":[
+            {"name":"AUTO","type":"url-test","proxies":[p["name"] for p in good],
+             "url":test_urls[0],"interval":300,"tolerance":100},
+            {"name":"PROXY","type":"select","proxies":["AUTO"]+[p["name"] for p in good]},
+          ],
+          "rules":["MATCH,PROXY"]
+        }
+        OUT.mkdir(exist_ok=True)
+        (OUT/"clash.yaml").write_text(yaml.safe_dump(profile,allow_unicode=True,sort_keys=False),encoding="utf-8")
+        delays=[by_name[p["name"]]["delay"] for p in good]
+        report={"generatedAt":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),
+                "sources":source_status,"uniqueInputLines":len(seen),
+                "parsedCandidates":len(proxies),"parseErrors":errors,
+                "testedNodes":len(results),"reachableNodes":len(results)-sum(1 for r in results if r["delay"] is None),
+                "publishedNodes":len(good),"maxNodes":MAX_NODES,
+                "maxPublish":max_publish,"testUrls":test_urls,
+                "latencyMs":{"min":min(delays),"median":sorted(delays)[len(delays)//2],"max":max(delays)},
+                "topNodes":[{"name":p["name"],"delayMs":by_name[p["name"]]["delay"]} for p in good[:20]],
+                "warning":"Public third-party nodes are untrusted. Tests run from GitHub Actions and do not guarantee reachability or speed from a user's device."}
+        (OUT/"status.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+        print(f"Live-tested {len(results)} nodes; {len(good)} passed and published.")
+    finally:
+        if proc is not None and proc.poll() is None:
+            proc.terminate()
+            try: proc.wait(timeout=5)
+            except subprocess.TimeoutExpired: proc.kill()
+        shutil.rmtree(work, ignore_errors=True)
+
 if __name__=="__main__": main()

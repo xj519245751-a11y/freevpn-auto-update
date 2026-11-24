@@ -15,7 +15,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -46,7 +46,7 @@ jobs:
         env:
           MAX_NODES: "250"
           MAX_PUBLISH: "100"
-          TEST_WORKERS: "16"
+          TEST_WORKERS: "8"
         run: python .github/scripts/build_profile.py
       - name: Validate generated YAML and report
         run: |
@@ -59,6 +59,8 @@ jobs:
           assert all(x.get("name") and x.get("type") and x.get("server") and x.get("port") for x in p["proxies"]), "proxy missing required fields"
           s=json.loads(Path("dist/status.json").read_text())
           assert s["publishedNodes"] == len(p["proxies"])
+          assert s["stableNodes"] == s["publishedNodes"], "only multi-round stable nodes may be published"
+          assert s["testRounds"] == 3
           print("YAML valid; nodes:", len(p["proxies"]))
           PY
       - name: Publish generated profile

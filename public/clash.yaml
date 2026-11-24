@@ -2660,13 +2660,6 @@ proxies:
       Host: 20250930kubaxixi.goubi.ggff.net
   tls: true
   servername: 20250930kubaxixi.goubi.ggff.net
-- name: کانال+:+@V2rayNGvpni
-  type: ss
-  server: 104.20.2.1
-  port: 80
-  cipher: ٭���7��v��
-  password: '{o��>�F�ѭ���5'
-  udp: true
 - name: Join+Telegram:@Farah_VPN-5
   type: trojan
   server: 170.101.101.112
@@ -3017,7 +3010,6 @@ proxy-groups:
   - '@Hope_Net-join-us-on-Telegram-2'
   - vmess-228
   - vmess-229
-  - کانال+:+@V2rayNGvpni
   - Join+Telegram:@Farah_VPN-5
   - '[9952][US][0][SS][None][ext_raw.githubusercontent.com]['
   - vmess-239
@@ -3267,7 +3259,6 @@ proxy-groups:
   - '@Hope_Net-join-us-on-Telegram-2'
   - vmess-228
   - vmess-229
-  - کانال+:+@V2rayNGvpni
   - Join+Telegram:@Farah_VPN-5
   - '[9952][US][0][SS][None][ext_raw.githubusercontent.com]['
   - vmess-239

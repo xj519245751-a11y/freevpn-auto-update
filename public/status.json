@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T21:14:07Z",
+  "generatedAt": "2026-11-24T21:35:48Z",
   "sources": [
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/1.txt",
@@ -168,8 +168,8 @@
     }
   ],
   "uniqueInputLines": 458593,
-  "publishedNodes": 243,
-  "parseErrors": 7,
+  "publishedNodes": 242,
+  "parseErrors": 8,
   "maxNodes": 250,
   "warning": "Syntax-filtered public third-party nodes only; no trust or reachability guarantee."
 }

@@ -61,7 +61,10 @@ jobs:
           assert s["publishedNodes"] == len(p["proxies"])
           assert s["stableNodes"] == s["publishedNodes"], "only multi-round stable nodes may be published"
           assert s["testRounds"] == 3
-          print("YAML valid; nodes:", len(p["proxies"]))
+          assert isinstance(s.get("speedTest"), dict), "missing V2.2 throughput test report"
+          assert s["speedTest"]["successful"] + s["speedTest"]["failed"] == s["stableNodes"]
+          assert all("throughputMbps" in n for n in s.get("topNodes", [])), "missing throughput fields"
+          print("YAML valid; nodes:", len(p["proxies"]), "speed probes:", s["speedTest"])
           PY
       - name: Publish generated profile
         run: |

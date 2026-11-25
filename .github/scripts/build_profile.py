@@ -17,7 +17,8 @@ TIMEOUT = 18
 SCHEMES = ("vless://", "vmess://", "trojan://", "ss://", "hy2://", "hysteria2://")
 MIRROR = "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror"
 IG = "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/"
-SOURCES = [f"{MIRROR}/{i}.txt" for i in range(1, 27)] + [
+RADAR = "https://radarhub.top/v2ray.txt"
+SOURCES = [f"{MIRROR}/{i}.txt" for i in range(1, 27)] + [RADAR,
     IG + "BLACK_SS%2BAll_RUS.txt", IG + "BLACK_VLESS_RUS.txt",
     IG + "BLACK_VLESS_RUS_mobile.txt", IG + "Vless-Reality-White-Lists-Rus-Mobile.txt",
     IG + "WHITE-CIDR-RU-all.txt", IG + "WHITE-CIDR-RU-checked.txt",
@@ -32,6 +33,20 @@ def get(url):
 def dec64(s):
     s += "=" * (-len(s) % 4)
     return base64.urlsafe_b64decode(s.encode()).decode("utf-8", "replace")
+
+def extract_feed_lines(body):
+    lines = [x.strip() for x in body.splitlines() if x.strip().startswith(SCHEMES)]
+    if lines:
+        return lines
+    # Radar publishes a Base64-encoded V2Ray subscription.
+    compact = "".join(body.split())
+    if compact:
+        try:
+            decoded = dec64(compact)
+            return [x.strip() for x in decoded.splitlines() if x.strip().startswith(SCHEMES)]
+        except Exception:
+            pass
+    return []
 
 def clean_name(s, fallback):
     s = unquote(s or fallback).strip()
@@ -175,7 +190,7 @@ def main():
     for url in SOURCES:
         try:
             body=get(url)
-            lines=[x.strip() for x in body.splitlines() if x.strip().startswith(SCHEMES)]
+            lines=extract_feed_lines(body)
             all_lines.extend(lines)
             source_status.append({"url":url,"status":"ok","entries":len(lines)})
         except Exception as e:
@@ -266,8 +281,15 @@ def main():
             for future in concurrent.futures.as_completed(futures):
                 results.append(future.result())
         by_name={r["name"]:r for r in results}
-        good=[p for p in proxies if by_name.get(p["name"],{}).get("stable") is True]
-        # Small serial download probe: one 512 KiB sample per stable candidate.
+        stable=[p for p in proxies if by_name.get(p["name"],{}).get("stable") is True]
+        preferred_limit=int(os.getenv("PREFERRED_LATENCY_MS", "200"))
+        max_latency=int(os.getenv("MAX_LATENCY_MS", "300"))
+        # Only stable nodes at or below the hard latency ceiling may be published.
+        good=[p for p in stable if by_name[p["name"]].get("delay") is not None
+              and by_name[p["name"]]["delay"] <= max_latency]
+        if not good:
+            raise SystemExit(f"No stable nodes at or below {max_latency}ms; existing published subscription is left untouched")
+        # Small serial download probe: one 512 KiB sample per latency-qualified candidate.
         # This ranks GitHub-runner throughput only; it is not a phone/network guarantee.
         speed_results = {}
         speed_url = os.getenv("SPEED_TEST_URL", "https://speed.cloudflare.com/__down?bytes=524288")
@@ -276,10 +298,11 @@ def main():
                 speed_results[p["name"]] = download_probe(p["name"], speed_url)
             except Exception as exc:
                 speed_results[p["name"]] = {"error": type(exc).__name__, "throughputMbps": None}
+        # Latency is the primary ranking criterion; throughput breaks latency ties.
         good.sort(key=lambda p: (
+            by_name[p["name"]]["delay"],
             speed_results.get(p["name"], {}).get("throughputMbps") is None,
-            -(speed_results.get(p["name"], {}).get("throughputMbps") or 0),
-            by_name[p["name"]]["delay"]
+            -(speed_results.get(p["name"], {}).get("throughputMbps") or 0)
         ))
         # Keep only nodes that completed a real proxied HTTP request; never fall back
         # to publishing syntax-only candidates.
@@ -303,13 +326,20 @@ def main():
           "proxy-groups":[
             {"name":"AUTO","type":"url-test","proxies":[p["name"] for p in good],
              "url":test_urls[0],"interval":300,"tolerance":100},
-            {"name":"PROXY","type":"select","proxies":["AUTO"]+[p["name"] for p in good]},
+            {"name":"FAST_LT_200MS","type":"url-test",
+             "proxies":[p["name"] for p in good if by_name[p["name"]]["delay"] < preferred_limit] or [good[0]["name"]],
+             "url":test_urls[0],"interval":300,"tolerance":50},
+            {"name":"BACKUP_200_300MS","type":"select",
+             "proxies":[p["name"] for p in good if preferred_limit <= by_name[p["name"]]["delay"] <= max_latency] or [good[0]["name"]]},
+            {"name":"PROXY","type":"select","proxies":["FAST_LT_200MS","AUTO","BACKUP_200_300MS"]+[p["name"] for p in good]},
           ],
           "rules":["MATCH,PROXY"]
         }
         OUT.mkdir(exist_ok=True)
         (OUT/"clash.yaml").write_text(yaml.safe_dump(profile,allow_unicode=True,sort_keys=False),encoding="utf-8")
         delays=[by_name[p["name"]]["delay"] for p in good]
+        preferred_count=sum(1 for p in good if by_name[p["name"]]["delay"] < preferred_limit)
+        backup_count=len(good)-preferred_count
         report={"generatedAt":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),
                 "sources":source_status,"uniqueInputLines":len(seen),
                 "parsedCandidates":len(proxies),"parseErrors":errors,
@@ -323,7 +353,10 @@ def main():
                 "nearDuplicateGroups":near_duplicate_groups,
                 "nearDuplicatePolicy":"diagnostic only; candidates are retained until device-side validation",
                 "publishedNodes":len(good),"maxNodes":MAX_NODES,
-                "maxPublish":max_publish,"testUrls":test_urls,
+                "maxPublish":max_publish,"preferredLatencyMs":preferred_limit,
+                "hardLatencyCeilingMs":max_latency,"preferredNodes":preferred_count,
+                "backupNodes":backup_count,"excludedStableOverCeiling":len(stable)-len(good),
+                "testUrls":test_urls,
                 "latencyMs":{"min":min(delays),"median":sorted(delays)[len(delays)//2],"max":max(delays)},
                 "topNodes":[{"name":p["name"],"medianDelayMs":by_name[p["name"]]["delay"],
                              "throughputMbps":speed_results.get(p["name"],{}).get("throughputMbps"),

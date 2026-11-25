@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T03:22:34Z",
+  "generatedAt": "2026-11-25T08:41:30Z",
   "sources": [
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/1.txt",
@@ -139,79 +139,87 @@
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_SS%2BAll_RUS.txt",
       "status": "ok",
-      "entries": 175
+      "entries": 104
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS.txt",
       "status": "ok",
-      "entries": 1202
+      "entries": 511
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt",
       "status": "ok",
-      "entries": 150
+      "entries": 148
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
       "status": "ok",
-      "entries": 101
+      "entries": 91
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-CIDR-RU-all.txt",
       "status": "ok",
-      "entries": 113
+      "entries": 110
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-CIDR-RU-checked.txt",
       "status": "ok",
-      "entries": 7
+      "entries": 10
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-SNI-RU-all.txt",
       "status": "ok",
-      "entries": 6
+      "entries": 0
     }
   ],
-  "uniqueInputLines": 459397,
-  "parsedCandidates": 226,
-  "parseErrors": 23,
-  "testedNodes": 226,
-  "reachableNodes": 7,
-  "stableNodes": 6,
+  "uniqueInputLines": 458636,
+  "parsedCandidates": 238,
+  "parseErrors": 12,
+  "testedNodes": 238,
+  "reachableNodes": 11,
+  "stableNodes": 9,
   "testRounds": 3,
   "requiredSuccessesPerNode": 6,
-  "deduplicatedCandidates": 226,
+  "deduplicatedCandidates": 238,
   "speedTest": {
     "url": "https://speed.cloudflare.com/__down?bytes=524288",
     "sampleBytesTarget": 524288,
-    "successful": 1,
+    "successful": 2,
     "failed": 0,
     "scope": "GitHub Actions runner only; not representative of the user's device/network"
   },
   "nearDuplicateGroups": [],
   "nearDuplicatePolicy": "diagnostic only; candidates are retained until device-side validation",
-  "publishedNodes": 1,
+  "publishedNodes": 2,
   "maxNodes": 250,
   "maxPublish": 100,
   "preferredLatencyMs": 200,
   "hardLatencyCeilingMs": 300,
   "preferredNodes": 1,
-  "backupNodes": 0,
-  "excludedStableOverCeiling": 5,
+  "backupNodes": 1,
+  "excludedStableOverCeiling": 7,
   "testUrls": [
     "https://www.gstatic.com/generate_204",
     "https://cp.cloudflare.com/generate_204"
   ],
   "latencyMs": {
-    "min": 77,
-    "median": 77,
-    "max": 77
+    "min": 162,
+    "median": 210,
+    "max": 210
   },
   "topNodes": [
     {
-      "name": "YFZ 458 @Outline_Vpn",
-      "medianDelayMs": 77,
-      "throughputMbps": 9.564,
+      "name": "🌐سرور 50 | Aza-03| MTSRVRS",
+      "medianDelayMs": 162,
+      "throughputMbps": 9.278,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🇺🇸US_16|1.2MB/s|M003-260806",
+      "medianDelayMs": 210,
+      "throughputMbps": 11.29,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6

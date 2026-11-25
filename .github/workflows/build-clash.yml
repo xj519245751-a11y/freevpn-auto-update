@@ -50,6 +50,8 @@ jobs:
         env:
           MAX_NODES: "250"
           MAX_PUBLISH: "100"
+          PREFERRED_LATENCY_MS: "200"
+          MAX_LATENCY_MS: "300"
           TEST_WORKERS: "8"
         run: python .github/scripts/build_profile.py
       - name: Validate generated YAML and report
@@ -63,10 +65,14 @@ jobs:
           assert all(x.get("name") and x.get("type") and x.get("server") and x.get("port") for x in p["proxies"]), "proxy missing required fields"
           s=json.loads(Path("dist/status.json").read_text())
           assert s["publishedNodes"] == len(p["proxies"])
-          assert s["stableNodes"] == s["publishedNodes"], "only multi-round stable nodes may be published"
+          assert s["publishedNodes"] <= s["stableNodes"], "published nodes must be a subset of stable nodes"
           assert s["testRounds"] == 3
-          assert isinstance(s.get("speedTest"), dict), "missing V2.2 throughput test report"
-          assert s["speedTest"]["successful"] + s["speedTest"]["failed"] == s["stableNodes"]
+          assert s["hardLatencyCeilingMs"] == 300, "unexpected latency ceiling"
+          assert s["preferredLatencyMs"] == 200, "unexpected preferred latency target"
+          assert s["latencyMs"]["max"] <= 300, "published node exceeds latency ceiling"
+          assert s["preferredNodes"] + s["backupNodes"] == s["publishedNodes"]
+          assert isinstance(s.get("speedTest"), dict), "missing throughput test report"
+          assert s["speedTest"]["successful"] + s["speedTest"]["failed"] == s["publishedNodes"]
           assert all("throughputMbps" in n for n in s.get("topNodes", [])), "missing throughput fields"
           print("YAML valid; nodes:", len(p["proxies"]), "speed probes:", s["speedTest"])
           PY

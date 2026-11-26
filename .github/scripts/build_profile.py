@@ -310,7 +310,7 @@ def main():
                 "mihomoLogTail": tail[-1500:],
                 "warning": "Public third-party nodes are untrusted; no candidate was published."
             }
-            (OUT/"status.json").write_text(json.dumps(startup_report,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+            (OUT/"status.json").write_text(json.dumps(startup_report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
             raise SystemExit("Mihomo failed to start; diagnostic report saved and no nodes published. " + tail[-1000:])
 
         test_urls = [

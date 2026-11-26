@@ -1,225 +1,480 @@
 {
-  "generatedAt": "2026-11-25T08:41:30Z",
+  "generatedAt": "2026-11-26T03:26:34Z",
   "sources": [
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/1.txt",
       "status": "ok",
-      "entries": 5589
+      "entries": 5251,
+      "uniqueEntries": 5251
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/2.txt",
       "status": "ok",
-      "entries": 405406
+      "entries": 405406,
+      "uniqueEntries": 373390
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/3.txt",
       "status": "ok",
-      "entries": 9687
+      "entries": 9823,
+      "uniqueEntries": 9745
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/4.txt",
       "status": "ok",
-      "entries": 276
+      "entries": 301,
+      "uniqueEntries": 301
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/5.txt",
       "status": "ok",
-      "entries": 248
+      "entries": 304,
+      "uniqueEntries": 303
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/6.txt",
       "status": "ok",
-      "entries": 85
+      "entries": 123,
+      "uniqueEntries": 119
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/7.txt",
       "status": "ok",
-      "entries": 641
+      "entries": 641,
+      "uniqueEntries": 409
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/8.txt",
       "status": "ok",
-      "entries": 285
+      "entries": 279,
+      "uniqueEntries": 279
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/9.txt",
       "status": "ok",
-      "entries": 240
+      "entries": 246,
+      "uniqueEntries": 227
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/10.txt",
       "status": "ok",
-      "entries": 8724
+      "entries": 8463,
+      "uniqueEntries": 8059
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/11.txt",
       "status": "ok",
-      "entries": 591
+      "entries": 591,
+      "uniqueEntries": 591
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/12.txt",
       "status": "ok",
-      "entries": 438
+      "entries": 475,
+      "uniqueEntries": 347
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/13.txt",
       "status": "ok",
-      "entries": 1026
+      "entries": 1015,
+      "uniqueEntries": 1015
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/14.txt",
       "status": "ok",
-      "entries": 17939
+      "entries": 17820,
+      "uniqueEntries": 17790
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/15.txt",
       "status": "ok",
-      "entries": 442
+      "entries": 455,
+      "uniqueEntries": 438
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/16.txt",
       "status": "ok",
-      "entries": 5
+      "entries": 11,
+      "uniqueEntries": 9
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/17.txt",
       "status": "ok",
-      "entries": 1405
+      "entries": 1569,
+      "uniqueEntries": 514
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/18.txt",
       "status": "ok",
-      "entries": 97
+      "entries": 210,
+      "uniqueEntries": 210
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/19.txt",
       "status": "ok",
-      "entries": 1582
+      "entries": 1852,
+      "uniqueEntries": 1269
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/20.txt",
       "status": "ok",
-      "entries": 2330
+      "entries": 2355,
+      "uniqueEntries": 1832
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/21.txt",
       "status": "ok",
-      "entries": 33486
+      "entries": 33038,
+      "uniqueEntries": 32707
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/22.txt",
       "status": "ok",
-      "entries": 243
+      "entries": 218,
+      "uniqueEntries": 218
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/23.txt",
       "status": "ok",
-      "entries": 272
+      "entries": 1450,
+      "uniqueEntries": 1450
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/24.txt",
       "status": "ok",
-      "entries": 763
+      "entries": 777,
+      "uniqueEntries": 775
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/25.txt",
       "status": "ok",
-      "entries": 258
+      "entries": 258,
+      "uniqueEntries": 258
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/26.txt",
       "status": "ok",
-      "entries": 4346
+      "entries": 4334,
+      "uniqueEntries": 540
     },
     {
       "url": "https://radarhub.top/v2ray.txt",
       "status": "ok",
-      "entries": 498
+      "entries": 498,
+      "uniqueEntries": 498
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_SS%2BAll_RUS.txt",
       "status": "ok",
-      "entries": 104
+      "entries": 179,
+      "uniqueEntries": 179
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS.txt",
       "status": "ok",
-      "entries": 511
+      "entries": 1452,
+      "uniqueEntries": 2
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt",
       "status": "ok",
-      "entries": 148
+      "entries": 150,
+      "uniqueEntries": 0
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
       "status": "ok",
-      "entries": 91
+      "entries": 15,
+      "uniqueEntries": 15
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-CIDR-RU-all.txt",
       "status": "ok",
-      "entries": 110
+      "entries": 15,
+      "uniqueEntries": 0
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-CIDR-RU-checked.txt",
       "status": "ok",
-      "entries": 10
+      "entries": 0,
+      "uniqueEntries": 0
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-SNI-RU-all.txt",
       "status": "ok",
-      "entries": 0
+      "entries": 0,
+      "uniqueEntries": 0
     }
   ],
-  "uniqueInputLines": 458636,
-  "parsedCandidates": 238,
-  "parseErrors": 12,
-  "testedNodes": 238,
-  "reachableNodes": 11,
-  "stableNodes": 9,
+  "uniqueInputLines": 458740,
+  "parsedCandidates": 207,
+  "parseErrors": 27,
+  "testedNodes": 207,
+  "reachableNodes": 73,
+  "stableNodes": 67,
   "testRounds": 3,
-  "requiredSuccessesPerNode": 6,
-  "deduplicatedCandidates": 238,
+  "requiredSuccessesPerNode": 4,
+  "deduplicatedCandidates": 207,
   "speedTest": {
     "url": "https://speed.cloudflare.com/__down?bytes=524288",
     "sampleBytesTarget": 524288,
-    "successful": 2,
+    "successful": 38,
     "failed": 0,
     "scope": "GitHub Actions runner only; not representative of the user's device/network"
   },
-  "nearDuplicateGroups": [],
+  "nearDuplicateGroups": [
+    [
+      {
+        "name": "vmess-198",
+        "server": "134.195.196.211"
+      },
+      {
+        "name": "🌐سرور 5 | Aza-05| MTSRVRS",
+        "server": "169.197.142.22"
+      },
+      {
+        "name": "vmess-164",
+        "server": "38.91.107.49"
+      }
+    ],
+    [
+      {
+        "name": "🆓13@oneclickvpnkeys",
+        "server": "171.22.183.158"
+      },
+      {
+        "name": "🔰66@oneclickvpnkeys",
+        "server": "91.211.27.231"
+      }
+    ],
+    [
+      {
+        "name": "🌐سرور 3 | Aza-05| MTSRVRS",
+        "server": "82.38.31.179"
+      },
+      {
+        "name": "🇳🇱 Netherlands 01",
+        "server": "82.38.31.195"
+      },
+      {
+        "name": "🇳🇱 Netherlands 04",
+        "server": "82.38.31.201"
+      },
+      {
+        "name": "🇳🇱NL_50|6.5MB/s|A003-260618",
+        "server": "82.38.31.212"
+      }
+    ],
+    [
+      {
+        "name": "新西兰+V2CROSS.COM-2",
+        "server": "202.50.253.90"
+      },
+      {
+        "name": "新西兰+V2CROSS.COM",
+        "server": "202.50.253.18"
+      },
+      {
+        "name": "IT【高速节点：https://vip.a3f.xyz】3",
+        "server": "202.50.253.81"
+      },
+      {
+        "name": "节点日期：2026-11-26",
+        "server": "202.50.253.72"
+      },
+      {
+        "name": "IT【高速节点：https://vip.a3f.xyz】2",
+        "server": "202.50.253.36"
+      },
+      {
+        "name": "🇨🇭 Switzerland 01",
+        "server": "23.166.88.189"
+      },
+      {
+        "name": "IT【高速节点：https://vip.a3f.xyz】1",
+        "server": "202.50.253.27"
+      },
+      {
+        "name": "新西兰+V2CROSS.COM-3",
+        "server": "202.50.253.45"
+      }
+    ]
+  ],
   "nearDuplicatePolicy": "diagnostic only; candidates are retained until device-side validation",
-  "publishedNodes": 2,
+  "publishedNodes": 38,
   "maxNodes": 250,
   "maxPublish": 100,
-  "preferredLatencyMs": 200,
-  "hardLatencyCeilingMs": 300,
-  "preferredNodes": 1,
-  "backupNodes": 1,
-  "excludedStableOverCeiling": 7,
+  "preferredLatencyMs": 300,
+  "hardLatencyCeilingMs": 600,
+  "preferredNodes": 14,
+  "backupNodes": 24,
+  "excludedStableOverCeiling": 29,
   "testUrls": [
     "https://www.gstatic.com/generate_204",
     "https://cp.cloudflare.com/generate_204"
   ],
   "latencyMs": {
-    "min": 162,
-    "median": 210,
-    "max": 210
+    "min": 112,
+    "median": 385,
+    "max": 584
   },
   "topNodes": [
     {
-      "name": "🌐سرور 50 | Aza-03| MTSRVRS",
-      "medianDelayMs": 162,
-      "throughputMbps": 9.278,
+      "name": "EPODONIOS-3",
+      "medianDelayMs": 112,
+      "throughputMbps": 9.036,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
-      "name": "🇺🇸US_16|1.2MB/s|M003-260806",
-      "medianDelayMs": 210,
-      "throughputMbps": 11.29,
+      "name": "EPODONIOS-2",
+      "medianDelayMs": 119,
+      "throughputMbps": 15.554,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "EPODONIOS",
+      "medianDelayMs": 120,
+      "throughputMbps": 16.436,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "EPODONIOS-5",
+      "medianDelayMs": 121,
+      "throughputMbps": 11.31,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "vmess-198",
+      "medianDelayMs": 126,
+      "throughputMbps": 0.789,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "[OpenRay] 🇺🇸US-1",
+      "medianDelayMs": 159,
+      "throughputMbps": 16.063,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🌐سرور 5 | Aza-05| MTSRVRS",
+      "medianDelayMs": 189,
+      "throughputMbps": 8.358,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "EPODONIOS-7",
+      "medianDelayMs": 209,
+      "throughputMbps": 11.224,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🆓13@oneclickvpnkeys",
+      "medianDelayMs": 212,
+      "throughputMbps": 5.659,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "EPODONIOS-6",
+      "medianDelayMs": 231,
+      "throughputMbps": 9.693,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🌐سرور 6 | Aza-05| MTSRVRS",
+      "medianDelayMs": 247,
+      "throughputMbps": 7.643,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "IR   HYSTERIA2-TCP-NTLS - DyarWeb Information Technolog",
+      "medianDelayMs": 247,
+      "throughputMbps": 5.024,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "BR   HYSTERIA2-TCP-NTLS - V tal  179.254.191.251",
+      "medianDelayMs": 280,
+      "throughputMbps": 5.027,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "US   HYSTERIA2-TCP-NTLS  128.254.186.246",
+      "medianDelayMs": 294,
+      "throughputMbps": 4.918,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🔰66@oneclickvpnkeys",
+      "medianDelayMs": 339,
+      "throughputMbps": 3.873,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "vmess-164",
+      "medianDelayMs": 366,
+      "throughputMbps": 6.754,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🌐سرور 3 | Aza-05| MTSRVRS",
+      "medianDelayMs": 378,
+      "throughputMbps": 4.176,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🇳🇱 Netherlands 01",
+      "medianDelayMs": 380,
+      "throughputMbps": 4.02,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🇳🇱 Netherlands 04",
+      "medianDelayMs": 382,
+      "throughputMbps": 4.064,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🇳🇱NL_50|6.5MB/s|A003-260618",
+      "medianDelayMs": 385,
+      "throughputMbps": 3.766,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6

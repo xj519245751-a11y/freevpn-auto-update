@@ -107,7 +107,12 @@ def parse_uri(line, idx):
         sni=q.get("sni",[""])[0]
         if sni: p["sni"]=sni
         obfs=q.get("obfs",[""])[0]
-        if obfs: p["obfs"]=obfs; p["obfs-password"]=q.get("obfs-password",[""])[0]
+        if obfs:
+            obfs_password=q.get("obfs-password",[""])[0]
+            if not obfs_password:
+                raise ValueError("missing Hysteria2 obfs password")
+            p["obfs"]=obfs
+            p["obfs-password"]=obfs_password
         return p
     if u.scheme == "ss":
         # SIP002 URI: ss://userinfo@host:port#name; legacy base64 form is decoded.
@@ -288,7 +293,25 @@ def main():
         if not ready:
             log_file.close()
             tail = open(log_path, encoding="utf-8", errors="replace").read()[-3000:]
-            raise SystemExit("Mihomo failed to start; no nodes published. " + tail[-1000:])
+            OUT.mkdir(exist_ok=True)
+            startup_report = {
+                "generatedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "stage": "mihomo_startup",
+                "sources": source_status,
+                "uniqueInputLines": len(seen),
+                "parsedCandidates": len(proxies),
+                "parseErrors": errors,
+                "testedNodes": 0, "reachableNodes": 0, "stableNodes": 0,
+                "testRounds": 3, "requiredSuccessesPerNode": MIN_SUCCESS_CHECKS,
+                "publishedNodes": 0, "maxNodes": MAX_NODES,
+                "preferredLatencyMs": int(os.getenv("PREFERRED_LATENCY_MS", "300")),
+                "hardLatencyCeilingMs": int(os.getenv("MAX_LATENCY_MS", "600")),
+                "failureReason": "Mihomo rejected the candidate configuration during startup.",
+                "mihomoLogTail": tail[-1500:],
+                "warning": "Public third-party nodes are untrusted; no candidate was published."
+            }
+            (OUT/"status.json").write_text(json.dumps(startup_report,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+            raise SystemExit("Mihomo failed to start; diagnostic report saved and no nodes published. " + tail[-1000:])
 
         test_urls = [
             os.getenv("TEST_URL_PRIMARY", "https://www.gstatic.com/generate_204"),

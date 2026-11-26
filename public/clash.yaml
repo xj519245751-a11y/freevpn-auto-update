@@ -4,48 +4,54 @@ mode: rule
 log-level: warning
 ipv6: false
 proxies:
-- name: 🌐سرور 50 | Aza-03| MTSRVRS
-  type: vmess
-  server: 23.162.200.198
-  port: 18000
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
-  alterId: 0
-  cipher: auto
+- name: '@Vip_Security join us - 166'
+  type: vless
+  server: 159.89.87.21
+  port: 28190
+  uuid: 14c80e0e-f7ce-4991-94fc-99a1db4a9b1e
   udp: true
-- name: 🇺🇸US_16|1.2MB/s|M003-260806
+  tls: true
+  servername: aws.amazon.com
+  reality-opts:
+    public-key: ZJRnFU-1s1JOnO8E9uZ7b00l1fPEh63fGRbdBANFRno
+    short-id: ''
+  client-fingerprint: chrome
+  flow: xtls-rprx-vision
+- name: '[9759][US][0][SS][None][ext_raw.githubusercontent.com]['
   type: ss
-  server: 38.121.43.231
-  port: 19999
+  server: 136.148.77.250
+  port: 8388
   cipher: aes-256-gcm
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  password: itzvpn@321
   udp: true
 proxy-groups:
 - name: AUTO
   type: url-test
   proxies:
-  - 🌐سرور 50 | Aza-03| MTSRVRS
-  - 🇺🇸US_16|1.2MB/s|M003-260806
+  - '@Vip_Security join us - 166'
+  - '[9759][US][0][SS][None][ext_raw.githubusercontent.com]['
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 100
 - name: FAST_LT_200MS
   type: url-test
   proxies:
-  - 🌐سرور 50 | Aza-03| MTSRVRS
+  - '@Vip_Security join us - 166'
+  - '[9759][US][0][SS][None][ext_raw.githubusercontent.com]['
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
 - name: BACKUP_200_300MS
   type: select
   proxies:
-  - 🇺🇸US_16|1.2MB/s|M003-260806
+  - '@Vip_Security join us - 166'
 - name: PROXY
   type: select
   proxies:
   - FAST_LT_200MS
   - AUTO
   - BACKUP_200_300MS
-  - 🌐سرور 50 | Aza-03| MTSRVRS
-  - 🇺🇸US_16|1.2MB/s|M003-260806
+  - '@Vip_Security join us - 166'
+  - '[9759][US][0][SS][None][ext_raw.githubusercontent.com]['
 rules:
 - MATCH,PROXY

@@ -77,7 +77,7 @@ jobs:
           assert s["testRounds"] == 3
           assert s["hardLatencyCeilingMs"] == 600, "unexpected latency ceiling"
           assert s["preferredLatencyMs"] == 300, "unexpected preferred latency target"
-          assert s["latencyMs"]["max"] <= 300, "published node exceeds latency ceiling"
+          assert s["latencyMs"]["max"] <= 600, "published node exceeds latency ceiling"
           assert s["preferredNodes"] + s["backupNodes"] == s["publishedNodes"]
           assert isinstance(s.get("speedTest"), dict), "missing throughput test report"
           assert s["speedTest"]["successful"] + s["speedTest"]["failed"] == s["publishedNodes"]

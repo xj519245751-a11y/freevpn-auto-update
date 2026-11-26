@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T03:26:34Z",
+  "generatedAt": "2026-11-26T03:42:56Z",
   "sources": [
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/1.txt",
@@ -211,14 +211,14 @@
   "parseErrors": 27,
   "testedNodes": 207,
   "reachableNodes": 73,
-  "stableNodes": 67,
+  "stableNodes": 63,
   "testRounds": 3,
   "requiredSuccessesPerNode": 4,
   "deduplicatedCandidates": 207,
   "speedTest": {
     "url": "https://speed.cloudflare.com/__down?bytes=524288",
     "sampleBytesTarget": 524288,
-    "successful": 38,
+    "successful": 39,
     "failed": 0,
     "scope": "GitHub Actions runner only; not representative of the user's device/network"
   },
@@ -227,10 +227,6 @@
       {
         "name": "vmess-198",
         "server": "134.195.196.211"
-      },
-      {
-        "name": "🌐سرور 5 | Aza-05| MTSRVRS",
-        "server": "169.197.142.22"
       },
       {
         "name": "vmess-164",
@@ -249,10 +245,6 @@
     ],
     [
       {
-        "name": "🌐سرور 3 | Aza-05| MTSRVRS",
-        "server": "82.38.31.179"
-      },
-      {
         "name": "🇳🇱 Netherlands 01",
         "server": "82.38.31.195"
       },
@@ -263,218 +255,222 @@
       {
         "name": "🇳🇱NL_50|6.5MB/s|A003-260618",
         "server": "82.38.31.212"
+      },
+      {
+        "name": "🌐سرور 3 | Aza-05| MTSRVRS",
+        "server": "82.38.31.179"
       }
     ],
     [
       {
-        "name": "新西兰+V2CROSS.COM-2",
-        "server": "202.50.253.90"
+        "name": "🇨🇭 Switzerland 01",
+        "server": "23.166.88.189"
       },
       {
-        "name": "新西兰+V2CROSS.COM",
-        "server": "202.50.253.18"
-      },
-      {
-        "name": "IT【高速节点：https://vip.a3f.xyz】3",
-        "server": "202.50.253.81"
+        "name": "新西兰+V2CROSS.COM-3",
+        "server": "202.50.253.45"
       },
       {
         "name": "节点日期：2026-11-26",
         "server": "202.50.253.72"
       },
       {
-        "name": "IT【高速节点：https://vip.a3f.xyz】2",
-        "server": "202.50.253.36"
+        "name": "新西兰+V2CROSS.COM",
+        "server": "202.50.253.18"
       },
       {
-        "name": "🇨🇭 Switzerland 01",
-        "server": "23.166.88.189"
+        "name": "新西兰+V2CROSS.COM-2",
+        "server": "202.50.253.90"
+      },
+      {
+        "name": "IT【高速节点：https://vip.a3f.xyz】2",
+        "server": "202.50.253.36"
       },
       {
         "name": "IT【高速节点：https://vip.a3f.xyz】1",
         "server": "202.50.253.27"
       },
       {
-        "name": "新西兰+V2CROSS.COM-3",
-        "server": "202.50.253.45"
+        "name": "IT【高速节点：https://vip.a3f.xyz】3",
+        "server": "202.50.253.81"
       }
     ]
   ],
   "nearDuplicatePolicy": "diagnostic only; candidates are retained until device-side validation",
-  "publishedNodes": 38,
+  "publishedNodes": 39,
   "maxNodes": 250,
   "maxPublish": 100,
   "preferredLatencyMs": 300,
   "hardLatencyCeilingMs": 600,
   "preferredNodes": 14,
-  "backupNodes": 24,
-  "excludedStableOverCeiling": 29,
+  "backupNodes": 25,
+  "excludedStableOverCeiling": 24,
   "testUrls": [
     "https://www.gstatic.com/generate_204",
     "https://cp.cloudflare.com/generate_204"
   ],
   "latencyMs": {
-    "min": 112,
-    "median": 385,
-    "max": 584
+    "min": 101,
+    "median": 322,
+    "max": 579
   },
   "topNodes": [
     {
+      "name": "vmess-198",
+      "medianDelayMs": 101,
+      "throughputMbps": 14.029,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
       "name": "EPODONIOS-3",
-      "medianDelayMs": 112,
-      "throughputMbps": 9.036,
-      "speedTestError": null,
-      "passedChecks": 6,
-      "requiredChecks": 6
-    },
-    {
-      "name": "EPODONIOS-2",
-      "medianDelayMs": 119,
-      "throughputMbps": 15.554,
-      "speedTestError": null,
-      "passedChecks": 6,
-      "requiredChecks": 6
-    },
-    {
-      "name": "EPODONIOS",
-      "medianDelayMs": 120,
-      "throughputMbps": 16.436,
+      "medianDelayMs": 110,
+      "throughputMbps": 17.484,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "EPODONIOS-5",
-      "medianDelayMs": 121,
-      "throughputMbps": 11.31,
+      "medianDelayMs": 111,
+      "throughputMbps": 11.247,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
-      "name": "vmess-198",
-      "medianDelayMs": 126,
-      "throughputMbps": 0.789,
+      "name": "EPODONIOS-2",
+      "medianDelayMs": 114,
+      "throughputMbps": 17.125,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "EPODONIOS",
+      "medianDelayMs": 115,
+      "throughputMbps": 17.519,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "[OpenRay] 🇺🇸US-1",
-      "medianDelayMs": 159,
-      "throughputMbps": 16.063,
+      "medianDelayMs": 129,
+      "throughputMbps": 14.926,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
-      "name": "🌐سرور 5 | Aza-05| MTSRVRS",
-      "medianDelayMs": 189,
-      "throughputMbps": 8.358,
-      "speedTestError": null,
-      "passedChecks": 6,
-      "requiredChecks": 6
-    },
-    {
-      "name": "EPODONIOS-7",
-      "medianDelayMs": 209,
-      "throughputMbps": 11.224,
+      "name": "🇨🇦 Canada — #7",
+      "medianDelayMs": 135,
+      "throughputMbps": 16.228,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "🆓13@oneclickvpnkeys",
-      "medianDelayMs": 212,
-      "throughputMbps": 5.659,
-      "speedTestError": null,
-      "passedChecks": 6,
-      "requiredChecks": 6
-    },
-    {
-      "name": "EPODONIOS-6",
-      "medianDelayMs": 231,
-      "throughputMbps": 9.693,
-      "speedTestError": null,
-      "passedChecks": 6,
-      "requiredChecks": 6
-    },
-    {
-      "name": "🌐سرور 6 | Aza-05| MTSRVRS",
-      "medianDelayMs": 247,
-      "throughputMbps": 7.643,
+      "medianDelayMs": 181,
+      "throughputMbps": 7.157,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "IR   HYSTERIA2-TCP-NTLS - DyarWeb Information Technolog",
-      "medianDelayMs": 247,
-      "throughputMbps": 5.024,
+      "medianDelayMs": 210,
+      "throughputMbps": 6.366,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
-      "name": "BR   HYSTERIA2-TCP-NTLS - V tal  179.254.191.251",
-      "medianDelayMs": 280,
-      "throughputMbps": 5.027,
+      "name": "EPODONIOS-7",
+      "medianDelayMs": 226,
+      "throughputMbps": 9.555,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "EPODONIOS-6",
+      "medianDelayMs": 237,
+      "throughputMbps": 11.292,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "US   HYSTERIA2-TCP-NTLS  128.254.186.246",
-      "medianDelayMs": 294,
-      "throughputMbps": 4.918,
+      "medianDelayMs": 241,
+      "throughputMbps": 6.266,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
-      "name": "🔰66@oneclickvpnkeys",
-      "medianDelayMs": 339,
-      "throughputMbps": 3.873,
+      "name": "BR   HYSTERIA2-TCP-NTLS - V tal  179.254.191.251",
+      "medianDelayMs": 250,
+      "throughputMbps": 5.775,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "vmess-164",
-      "medianDelayMs": 366,
-      "throughputMbps": 6.754,
+      "medianDelayMs": 268,
+      "throughputMbps": 9.761,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
-      "name": "🌐سرور 3 | Aza-05| MTSRVRS",
-      "medianDelayMs": 378,
-      "throughputMbps": 4.176,
+      "name": "🔰66@oneclickvpnkeys",
+      "medianDelayMs": 302,
+      "throughputMbps": 4.613,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "🇳🇱 Netherlands 01",
-      "medianDelayMs": 380,
-      "throughputMbps": 4.02,
+      "medianDelayMs": 312,
+      "throughputMbps": 4.968,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "🇳🇱 Netherlands 04",
-      "medianDelayMs": 382,
-      "throughputMbps": 4.064,
+      "medianDelayMs": 317,
+      "throughputMbps": 4.807,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
       "name": "🇳🇱NL_50|6.5MB/s|A003-260618",
-      "medianDelayMs": 385,
-      "throughputMbps": 3.766,
+      "medianDelayMs": 318,
+      "throughputMbps": 4.905,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🌐سرور 3 | Aza-05| MTSRVRS",
+      "medianDelayMs": 321,
+      "throughputMbps": 4.926,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "🌐سرور 6 | Aza-05| MTSRVRS",
+      "medianDelayMs": 322,
+      "throughputMbps": 5.765,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6

@@ -4,6 +4,14 @@ mode: rule
 log-level: warning
 ipv6: false
 proxies:
+- name: vmess-198
+  type: vmess
+  server: 134.195.196.211
+  port: 18000
+  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
+  alterId: 0
+  cipher: auto
+  udp: true
 - name: EPODONIOS-3
   type: trojan
   server: 216.152.155.23
@@ -11,6 +19,13 @@ proxies:
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   udp: true
   sni: courses.nextjobopportunityandclaimyouridealrole.com
+- name: EPODONIOS-5
+  type: trojan
+  server: 216.152.155.59
+  port: 443
+  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
+  udp: true
+  sni: api.nextjobopportunityandclaimyouridealrole.com
 - name: EPODONIOS-2
   type: trojan
   server: 216.152.155.176
@@ -25,21 +40,6 @@ proxies:
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   udp: true
   sni: resources.nextjobopportunityandclaimyouridealrole.com
-- name: EPODONIOS-5
-  type: trojan
-  server: 216.152.155.59
-  port: 443
-  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
-  udp: true
-  sni: api.nextjobopportunityandclaimyouridealrole.com
-- name: vmess-198
-  type: vmess
-  server: 134.195.196.211
-  port: 18000
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
-  alterId: 0
-  cipher: auto
-  udp: true
 - name: '[OpenRay] 🇺🇸US-1'
   type: trojan
   server: 216.152.147.93
@@ -47,21 +47,19 @@ proxies:
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   udp: true
   sni: connectingpeoplewithgreatjobs.com
-- name: 🌐سرور 5 | Aza-05| MTSRVRS
-  type: vmess
-  server: 169.197.142.22
-  port: 18000
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
-  alterId: 0
-  cipher: auto
-  udp: true
-- name: EPODONIOS-7
-  type: trojan
-  server: 216.152.156.81
+- name: '🇨🇦 Canada — #7'
+  type: vless
+  server: 209.200.246.148
   port: 443
-  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
+  uuid: ca52e2b6-fb9f-4dac-b6dc-49da9923f251
   udp: true
-  sni: www.healthcarejobshubenhancemedicalprofessionalskillstoday.com
+  tls: true
+  servername: www.cloudflare.com
+  reality-opts:
+    public-key: uTmb-ytXsx8p0fkBz7A76SHpWk7_oVutIA4LGTE8BQk
+    short-id: f98843107912e782
+  client-fingerprint: firefox
+  flow: xtls-rprx-vision
 - name: 🆓13@oneclickvpnkeys
   type: hysteria2
   server: 171.22.183.158
@@ -69,26 +67,6 @@ proxies:
   password: 04920673-035c-410d-94e4-5b1469d3fb6f
   udp: true
   sni: 171.22.183.158
-- name: EPODONIOS-6
-  type: trojan
-  server: 216.152.156.212
-  port: 443
-  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
-  udp: true
-  sni: courses.healthcarejobshubenhancemedicalprofessionalskillstoday.com
-- name: 🌐سرور 6 | Aza-05| MTSRVRS
-  type: vless
-  server: 15.204.97.214
-  port: 23576
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-  udp: true
-  tls: true
-  servername: fuck.rkn
-  reality-opts:
-    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
-    short-id: '01'
-  client-fingerprint: chrome
-  flow: xtls-rprx-vision
 - name: IR   HYSTERIA2-TCP-NTLS - DyarWeb Information Technolog
   type: hysteria2
   server: 94.183.164.119
@@ -96,13 +74,20 @@ proxies:
   password: 549766c3-fa5f-471e-8031-ffc1f8d5064f
   udp: true
   sni: docs.blog-forme.ru
-- name: BR   HYSTERIA2-TCP-NTLS - V tal  179.254.191.251
-  type: hysteria2
-  server: 179.254.191.251
-  port: 4444
-  password: a35c508f-4d5d-4531-842e-6e9d43c762c0
+- name: EPODONIOS-7
+  type: trojan
+  server: 216.152.156.81
+  port: 443
+  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   udp: true
-  sni: bl1.nexfile.net
+  sni: www.healthcarejobshubenhancemedicalprofessionalskillstoday.com
+- name: EPODONIOS-6
+  type: trojan
+  server: 216.152.156.212
+  port: 443
+  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
+  udp: true
+  sni: courses.healthcarejobshubenhancemedicalprofessionalskillstoday.com
 - name: US   HYSTERIA2-TCP-NTLS  128.254.186.246
   type: hysteria2
   server: uk-tube-01.stre4m.net
@@ -110,13 +95,13 @@ proxies:
   password: 900c8c92-1979-4c7c-8f2f-63e87d53d8fe
   udp: true
   sni: mother-earth.fyi
-- name: 🔰66@oneclickvpnkeys
+- name: BR   HYSTERIA2-TCP-NTLS - V tal  179.254.191.251
   type: hysteria2
-  server: 91.211.27.231
-  port: 42848
-  password: 04920673-035c-410d-94e4-5b1469d3fb6f
+  server: 179.254.191.251
+  port: 4444
+  password: a35c508f-4d5d-4531-842e-6e9d43c762c0
   udp: true
-  sni: 171.22.183.158
+  sni: bl1.nexfile.net
 - name: vmess-164
   type: vmess
   server: 38.91.107.49
@@ -125,13 +110,13 @@ proxies:
   alterId: 0
   cipher: auto
   udp: true
-- name: 🌐سرور 3 | Aza-05| MTSRVRS
-  type: ss
-  server: 82.38.31.179
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
+- name: 🔰66@oneclickvpnkeys
+  type: hysteria2
+  server: 91.211.27.231
+  port: 42848
+  password: 04920673-035c-410d-94e4-5b1469d3fb6f
   udp: true
+  sni: 171.22.183.158
 - name: 🇳🇱 Netherlands 01
   type: ss
   server: 82.38.31.195
@@ -153,13 +138,47 @@ proxies:
   cipher: chacha20-ietf-poly1305
   password: k1dBOmOB4oqi7Ump37a1bQ
   udp: true
-- name: GB   HYSTERIA2-TCP-NTLS - Jisc Services Limited  136.14
-  type: hysteria2
-  server: 136.148.83.69
-  port: 443
-  password: 87bb2ac4-b7a1-0001-b11d-2107709ea6cb
+- name: 🌐سرور 3 | Aza-05| MTSRVRS
+  type: ss
+  server: 82.38.31.179
+  port: 8080
+  cipher: chacha20-ietf-poly1305
+  password: k1dBOmOB4oqi7Ump37a1bQ
   udp: true
-  sni: szqbx-ru-77dc.my-fade.cloud
+- name: 🌐سرور 6 | Aza-05| MTSRVRS
+  type: vless
+  server: 15.204.97.214
+  port: 23576
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  udp: true
+  tls: true
+  servername: fuck.rkn
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  client-fingerprint: chrome
+  flow: xtls-rprx-vision
+- name: 🇨🇭 Switzerland 01
+  type: ss
+  server: 23.166.88.189
+  port: 19999
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  udp: true
+- name: 新西兰+V2CROSS.COM-3
+  type: ss
+  server: 202.50.253.45
+  port: 19999
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  udp: true
+- name: 节点日期：2026-11-26
+  type: ss
+  server: 202.50.253.72
+  port: 19999
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  udp: true
 - name: 🇳🇱NL_145|723KB/s|M003-260806
   type: vless
   server: 179.254.126.86
@@ -175,13 +194,6 @@ proxies:
   network: grpc
   grpc-opts:
     grpc-service-name: becc6caf9bea
-- name: 新西兰+V2CROSS.COM-2
-  type: ss
-  server: 202.50.253.90
-  port: 19999
-  cipher: aes-256-gcm
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  udp: true
 - name: 新西兰+V2CROSS.COM
   type: ss
   server: 202.50.253.18
@@ -189,16 +201,9 @@ proxies:
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: IT【高速节点：https://vip.a3f.xyz】3
+- name: 新西兰+V2CROSS.COM-2
   type: ss
-  server: 202.50.253.81
-  port: 19999
-  cipher: aes-256-gcm
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  udp: true
-- name: 节点日期：2026-11-26
-  type: ss
-  server: 202.50.253.72
+  server: 202.50.253.90
   port: 19999
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
@@ -210,13 +215,6 @@ proxies:
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 🇨🇭 Switzerland 01
-  type: ss
-  server: 23.166.88.189
-  port: 19999
-  cipher: aes-256-gcm
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  udp: true
 - name: IT【高速节点：https://vip.a3f.xyz】1
   type: ss
   server: 202.50.253.27
@@ -224,9 +222,16 @@ proxies:
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 新西兰+V2CROSS.COM-3
+- name: 🇵🇾𝙏𝙚𝙡𝙚𝙜𝙧𝙖𝙢⫸@𝙫𝟮𝙧𝙖𝙮𝙉𝙂_𝙈𝙖𝙩𝙨𝙪𝙧𝙞✅دوسـتـان لـطـفـاً کـانـفـیـ
   type: ss
-  server: 202.50.253.45
+  server: 178.162.254.38
+  port: 8388
+  cipher: aes-256-gcm
+  password: itzvpn@321
+  udp: true
+- name: IT【高速节点：https://vip.a3f.xyz】3
+  type: ss
+  server: 202.50.253.81
   port: 19999
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
@@ -245,6 +250,13 @@ proxies:
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   udp: true
   sni: learn.indyourperfectremotetechjobfromthecomfortofhome.com
+- name: GB   HYSTERIA2-TCP-NTLS - Jisc Services Limited  136.14
+  type: hysteria2
+  server: 136.148.83.69
+  port: 443
+  password: 87bb2ac4-b7a1-0001-b11d-2107709ea6cb
+  udp: true
+  sni: szqbx-ru-77dc.my-fade.cloud
 - name: '[OpenRay] 🌐XX-6'
   type: vless
   server: leviko-fr1177.shopingggg.ir
@@ -256,13 +268,6 @@ proxies:
     path: /vless-kulo
     headers:
       Host: leviko-fr1177.shopingggg.ir
-- name: 🇷🇺[openproxylist.com] ss-RU
-  type: ss
-  server: 194.87.69.12
-  port: 18443
-  cipher: aes-256-gcm
-  password: 5mKjXAGrliIAlYwWDeFzkCEMIgQdFQLe
-  udp: true
 - name: '🇨🇭 Switzerland — #11'
   type: vless
   server: 45.90.59.15
@@ -276,29 +281,16 @@ proxies:
     short-id: 19253fae84102271
   client-fingerprint: random
   flow: xtls-rprx-vision
-- name: 🇵🇾𝙏𝙚𝙡𝙚𝙜𝙧𝙖𝙢⫸@𝙫𝟮𝙧𝙖𝙮𝙉𝙂_𝙈𝙖𝙩𝙨𝙪𝙧𝙞✅دوسـتـان لـطـفـاً کـانـفـیـ
+- name: 🇷🇺[openproxylist.com] ss-RU
   type: ss
-  server: 178.162.254.38
-  port: 8388
+  server: 194.87.69.12
+  port: 18443
   cipher: aes-256-gcm
-  password: itzvpn@321
+  password: 5mKjXAGrliIAlYwWDeFzkCEMIgQdFQLe
   udp: true
-- name: vmess-18
-  type: vmess
-  server: 168.138.43.75
-  port: 80
-  uuid: 11c3627f-31e8-4695-dfbd-34076e2f1f5d
-  alterId: 0
-  cipher: auto
-  udp: true
-  network: ws
-  ws-opts:
-    path: /cctv13.m3u8
-    headers:
-      Host: 168.138.43.75
-- name: 🇩🇪 DE | 132.243.242.246
+- name: '[OpenRay] 🌐XX-5'
   type: vless
-  server: 132.243.242.246
+  server: vde.b.qaz.it.com
   port: 9543
   uuid: 920b3cd9-4f82-4669-bbd2-d4a28b9052c6
   udp: true
@@ -307,70 +299,97 @@ proxies:
   reality-opts:
     public-key: M6Ck7wUfOLhQl4582CBnaXwscPEP6SCpdEkUDzoj4Fc
     short-id: 123abcdf
-  client-fingerprint: edge
+  client-fingerprint: firefox
+  flow: xtls-rprx-vision
+- name: '🇪🇸 Spain — #28'
+  type: vless
+  server: 46.28.71.247
+  port: 443
+  uuid: 12c53e32-e589-47d6-b857-e4132294f767
+  udp: true
+  tls: true
+  servername: www.cloudflare.com
+  reality-opts:
+    public-key: v4MuZIvFrTPT5GHMSaPryUAbIZlLstmsUTzmC1E-JTE
+    short-id: 0dfc23fe80778c00
+  client-fingerprint: firefox
+  flow: xtls-rprx-vision
+- name: '[🇧🇬] [vl-re-ra] [261125-230621.845]'
+  type: vless
+  server: 195.123.226.21
+  port: 443
+  uuid: 6589c320-db68-43cd-a273-b46299bab355
+  udp: true
+  tls: true
+  servername: gateway.icloud.com
+  reality-opts:
+    public-key: rabtI-ymNXBUvYYRwAw8DiR-1pdP7U0WPIaCBHEkgzo
+    short-id: 77bb0d07bddbc832
+  client-fingerprint: chrome
   flow: xtls-rprx-vision
 proxy-groups:
 - name: AUTO
   type: url-test
   proxies:
+  - vmess-198
   - EPODONIOS-3
+  - EPODONIOS-5
   - EPODONIOS-2
   - EPODONIOS
-  - EPODONIOS-5
-  - vmess-198
   - '[OpenRay] 🇺🇸US-1'
-  - 🌐سرور 5 | Aza-05| MTSRVRS
-  - EPODONIOS-7
+  - '🇨🇦 Canada — #7'
   - 🆓13@oneclickvpnkeys
-  - EPODONIOS-6
-  - 🌐سرور 6 | Aza-05| MTSRVRS
   - IR   HYSTERIA2-TCP-NTLS - DyarWeb Information Technolog
-  - BR   HYSTERIA2-TCP-NTLS - V tal  179.254.191.251
+  - EPODONIOS-7
+  - EPODONIOS-6
   - US   HYSTERIA2-TCP-NTLS  128.254.186.246
-  - 🔰66@oneclickvpnkeys
+  - BR   HYSTERIA2-TCP-NTLS - V tal  179.254.191.251
   - vmess-164
-  - 🌐سرور 3 | Aza-05| MTSRVRS
+  - 🔰66@oneclickvpnkeys
   - 🇳🇱 Netherlands 01
   - 🇳🇱 Netherlands 04
   - 🇳🇱NL_50|6.5MB/s|A003-260618
-  - GB   HYSTERIA2-TCP-NTLS - Jisc Services Limited  136.14
-  - 🇳🇱NL_145|723KB/s|M003-260806
-  - 新西兰+V2CROSS.COM-2
-  - 新西兰+V2CROSS.COM
-  - IT【高速节点：https://vip.a3f.xyz】3
-  - 节点日期：2026-11-26
-  - IT【高速节点：https://vip.a3f.xyz】2
+  - 🌐سرور 3 | Aza-05| MTSRVRS
+  - 🌐سرور 6 | Aza-05| MTSRVRS
   - 🇨🇭 Switzerland 01
-  - IT【高速节点：https://vip.a3f.xyz】1
   - 新西兰+V2CROSS.COM-3
+  - 节点日期：2026-11-26
+  - 🇳🇱NL_145|723KB/s|M003-260806
+  - 新西兰+V2CROSS.COM
+  - 新西兰+V2CROSS.COM-2
+  - IT【高速节点：https://vip.a3f.xyz】2
+  - IT【高速节点：https://vip.a3f.xyz】1
+  - 🇵🇾𝙏𝙚𝙡𝙚𝙜𝙧𝙖𝙢⫸@𝙫𝟮𝙧𝙖𝙮𝙉𝙂_𝙈𝙖𝙩𝙨𝙪𝙧𝙞✅دوسـتـان لـطـفـاً کـانـفـیـ
+  - IT【高速节点：https://vip.a3f.xyz】3
   - 🇵🇱PL_16|2.1MB/s|M003-260806
   - 🇳🇱 Netherlands 02
+  - GB   HYSTERIA2-TCP-NTLS - Jisc Services Limited  136.14
   - '[OpenRay] 🌐XX-6'
-  - 🇷🇺[openproxylist.com] ss-RU
   - '🇨🇭 Switzerland — #11'
-  - 🇵🇾𝙏𝙚𝙡𝙚𝙜𝙧𝙖𝙢⫸@𝙫𝟮𝙧𝙖𝙮𝙉𝙂_𝙈𝙖𝙩𝙨𝙪𝙧𝙞✅دوسـتـان لـطـفـاً کـانـفـیـ
-  - vmess-18
-  - 🇩🇪 DE | 132.243.242.246
+  - 🇷🇺[openproxylist.com] ss-RU
+  - '[OpenRay] 🌐XX-5'
+  - '🇪🇸 Spain — #28'
+  - '[🇧🇬] [vl-re-ra] [261125-230621.845]'
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 100
 - name: PREFERRED_LT_300MS
   type: url-test
   proxies:
+  - vmess-198
   - EPODONIOS-3
+  - EPODONIOS-5
   - EPODONIOS-2
   - EPODONIOS
-  - EPODONIOS-5
-  - vmess-198
   - '[OpenRay] 🇺🇸US-1'
-  - 🌐سرور 5 | Aza-05| MTSRVRS
-  - EPODONIOS-7
+  - '🇨🇦 Canada — #7'
   - 🆓13@oneclickvpnkeys
-  - EPODONIOS-6
-  - 🌐سرور 6 | Aza-05| MTSRVRS
   - IR   HYSTERIA2-TCP-NTLS - DyarWeb Information Technolog
-  - BR   HYSTERIA2-TCP-NTLS - V tal  179.254.191.251
+  - EPODONIOS-7
+  - EPODONIOS-6
   - US   HYSTERIA2-TCP-NTLS  128.254.186.246
+  - BR   HYSTERIA2-TCP-NTLS - V tal  179.254.191.251
+  - vmess-164
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 75
@@ -378,72 +397,74 @@ proxy-groups:
   type: select
   proxies:
   - 🔰66@oneclickvpnkeys
-  - vmess-164
-  - 🌐سرور 3 | Aza-05| MTSRVRS
   - 🇳🇱 Netherlands 01
   - 🇳🇱 Netherlands 04
   - 🇳🇱NL_50|6.5MB/s|A003-260618
-  - GB   HYSTERIA2-TCP-NTLS - Jisc Services Limited  136.14
-  - 🇳🇱NL_145|723KB/s|M003-260806
-  - 新西兰+V2CROSS.COM-2
-  - 新西兰+V2CROSS.COM
-  - IT【高速节点：https://vip.a3f.xyz】3
-  - 节点日期：2026-11-26
-  - IT【高速节点：https://vip.a3f.xyz】2
+  - 🌐سرور 3 | Aza-05| MTSRVRS
+  - 🌐سرور 6 | Aza-05| MTSRVRS
   - 🇨🇭 Switzerland 01
-  - IT【高速节点：https://vip.a3f.xyz】1
   - 新西兰+V2CROSS.COM-3
+  - 节点日期：2026-11-26
+  - 🇳🇱NL_145|723KB/s|M003-260806
+  - 新西兰+V2CROSS.COM
+  - 新西兰+V2CROSS.COM-2
+  - IT【高速节点：https://vip.a3f.xyz】2
+  - IT【高速节点：https://vip.a3f.xyz】1
+  - 🇵🇾𝙏𝙚𝙡𝙚𝙜𝙧𝙖𝙢⫸@𝙫𝟮𝙧𝙖𝙮𝙉𝙂_𝙈𝙖𝙩𝙨𝙪𝙧𝙞✅دوسـتـان لـطـفـاً کـانـفـیـ
+  - IT【高速节点：https://vip.a3f.xyz】3
   - 🇵🇱PL_16|2.1MB/s|M003-260806
   - 🇳🇱 Netherlands 02
+  - GB   HYSTERIA2-TCP-NTLS - Jisc Services Limited  136.14
   - '[OpenRay] 🌐XX-6'
-  - 🇷🇺[openproxylist.com] ss-RU
   - '🇨🇭 Switzerland — #11'
-  - 🇵🇾𝙏𝙚𝙡𝙚𝙜𝙧𝙖𝙢⫸@𝙫𝟮𝙧𝙖𝙮𝙉𝙂_𝙈𝙖𝙩𝙨𝙪𝙧𝙞✅دوسـتـان لـطـفـاً کـانـفـیـ
-  - vmess-18
-  - 🇩🇪 DE | 132.243.242.246
+  - 🇷🇺[openproxylist.com] ss-RU
+  - '[OpenRay] 🌐XX-5'
+  - '🇪🇸 Spain — #28'
+  - '[🇧🇬] [vl-re-ra] [261125-230621.845]'
 - name: PROXY
   type: select
   proxies:
   - PREFERRED_LT_300MS
   - AUTO
   - BACKUP_300_600MS
+  - vmess-198
   - EPODONIOS-3
+  - EPODONIOS-5
   - EPODONIOS-2
   - EPODONIOS
-  - EPODONIOS-5
-  - vmess-198
   - '[OpenRay] 🇺🇸US-1'
-  - 🌐سرور 5 | Aza-05| MTSRVRS
-  - EPODONIOS-7
+  - '🇨🇦 Canada — #7'
   - 🆓13@oneclickvpnkeys
-  - EPODONIOS-6
-  - 🌐سرور 6 | Aza-05| MTSRVRS
   - IR   HYSTERIA2-TCP-NTLS - DyarWeb Information Technolog
-  - BR   HYSTERIA2-TCP-NTLS - V tal  179.254.191.251
+  - EPODONIOS-7
+  - EPODONIOS-6
   - US   HYSTERIA2-TCP-NTLS  128.254.186.246
-  - 🔰66@oneclickvpnkeys
+  - BR   HYSTERIA2-TCP-NTLS - V tal  179.254.191.251
   - vmess-164
-  - 🌐سرور 3 | Aza-05| MTSRVRS
+  - 🔰66@oneclickvpnkeys
   - 🇳🇱 Netherlands 01
   - 🇳🇱 Netherlands 04
   - 🇳🇱NL_50|6.5MB/s|A003-260618
-  - GB   HYSTERIA2-TCP-NTLS - Jisc Services Limited  136.14
-  - 🇳🇱NL_145|723KB/s|M003-260806
-  - 新西兰+V2CROSS.COM-2
-  - 新西兰+V2CROSS.COM
-  - IT【高速节点：https://vip.a3f.xyz】3
-  - 节点日期：2026-11-26
-  - IT【高速节点：https://vip.a3f.xyz】2
+  - 🌐سرور 3 | Aza-05| MTSRVRS
+  - 🌐سرور 6 | Aza-05| MTSRVRS
   - 🇨🇭 Switzerland 01
-  - IT【高速节点：https://vip.a3f.xyz】1
   - 新西兰+V2CROSS.COM-3
+  - 节点日期：2026-11-26
+  - 🇳🇱NL_145|723KB/s|M003-260806
+  - 新西兰+V2CROSS.COM
+  - 新西兰+V2CROSS.COM-2
+  - IT【高速节点：https://vip.a3f.xyz】2
+  - IT【高速节点：https://vip.a3f.xyz】1
+  - 🇵🇾𝙏𝙚𝙡𝙚𝙜𝙧𝙖𝙢⫸@𝙫𝟮𝙧𝙖𝙮𝙉𝙂_𝙈𝙖𝙩𝙨𝙪𝙧𝙞✅دوسـتـان لـطـفـاً کـانـفـیـ
+  - IT【高速节点：https://vip.a3f.xyz】3
   - 🇵🇱PL_16|2.1MB/s|M003-260806
   - 🇳🇱 Netherlands 02
+  - GB   HYSTERIA2-TCP-NTLS - Jisc Services Limited  136.14
   - '[OpenRay] 🌐XX-6'
-  - 🇷🇺[openproxylist.com] ss-RU
   - '🇨🇭 Switzerland — #11'
-  - 🇵🇾𝙏𝙚𝙡𝙚𝙜𝙧𝙖𝙢⫸@𝙫𝟮𝙧𝙖𝙮𝙉𝙂_𝙈𝙖𝙩𝙨𝙪𝙧𝙞✅دوسـتـان لـطـفـاً کـانـفـیـ
-  - vmess-18
-  - 🇩🇪 DE | 132.243.242.246
+  - 🇷🇺[openproxylist.com] ss-RU
+  - '[OpenRay] 🌐XX-5'
+  - '🇪🇸 Spain — #28'
+  - '[🇧🇬] [vl-re-ra] [261125-230621.845]'
 rules:
 - MATCH,PROXY

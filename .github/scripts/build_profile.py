@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "dist"
 MAX_NODES = int(os.getenv("MAX_NODES", "250"))
+MIN_SUCCESS_CHECKS = int(os.getenv("MIN_SUCCESS_CHECKS", "4"))
 TIMEOUT = 18
 SCHEMES = ("vless://", "vmess://", "trojan://", "ss://", "hy2://", "hysteria2://")
 MIRROR = "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror"
@@ -139,22 +140,29 @@ def api_delay(name, url, timeout_ms=7000):
     return delay
 
 def test_one(proxy, urls, rounds=3):
+    """Run repeated checks against every probe URL; tolerate isolated endpoint failures."""
     samples = []
+    successes_by_url = {url: 0 for url in urls}
+    valid = []
     for round_no in range(rounds):
         round_delays = []
         for url in urls:
             try:
-                round_delays.append(api_delay(proxy["name"], url, timeout_ms=8000))
+                delay = api_delay(proxy["name"], url, timeout_ms=8000)
+                round_delays.append(delay)
+                valid.append(delay)
+                successes_by_url[url] += 1
             except Exception:
-                pass
-        samples.append(round_delays if len(round_delays) == len(urls) else None)
+                round_delays.append(None)
+        samples.append(round_delays)
         if round_no + 1 < rounds:
             time.sleep(2)
-    valid = [x for group in samples if group for x in group]
-    stable = all(group is not None for group in samples)
+    # Require at least MIN_SUCCESS_CHECKS successes and at least one pass per endpoint.
+    stable = (len(valid) >= MIN_SUCCESS_CHECKS
+              and all(count >= 1 for count in successes_by_url.values()))
     return {"name": proxy["name"], "delay": int(sorted(valid)[len(valid)//2]) if valid else None,
-            "roundSamples": samples, "passedChecks": len(valid),
-            "requiredChecks": rounds * len(urls), "stable": stable}
+            "roundSamples": samples, "successesByUrl": successes_by_url,
+            "passedChecks": len(valid), "requiredChecks": rounds * len(urls), "stable": stable}
 
 def download_probe(proxy_name, url, timeout_seconds=20):
     """Measure a small proxied download through the local Mihomo mixed port."""
@@ -186,23 +194,35 @@ def download_probe(proxy_name, url, timeout_seconds=20):
             "throughputMbps": round(total * 8 / elapsed / 1_000_000, 3)}
 
 def main():
-    all_lines=[]; source_status=[]
+    source_buckets=[]; source_status=[]; unique_input_lines=set()
     for url in SOURCES:
         try:
             body=get(url)
             lines=extract_feed_lines(body)
-            all_lines.extend(lines)
-            source_status.append({"url":url,"status":"ok","entries":len(lines)})
+            bucket=[]
+            for line in lines:
+                if line not in unique_input_lines:
+                    unique_input_lines.add(line)
+                    bucket.append(line)
+            source_buckets.append(bucket)
+            source_status.append({"url":url,"status":"ok","entries":len(lines),
+                                  "uniqueEntries":len(bucket)})
         except Exception as e:
+            source_buckets.append([])
             source_status.append({"url":url,"status":"unavailable","error":type(e).__name__})
-    seen=set(); candidates=[]
-    for line in all_lines:
-        if line not in seen:
-            seen.add(line); candidates.append(line)
+    # Round-robin across sources so one huge feed cannot monopolize the candidate budget.
+    candidates=[]; positions=[0]*len(source_buckets)
+    while len(candidates)<MAX_NODES:
+        added=False
+        for i,bucket in enumerate(source_buckets):
+            if positions[i] < len(bucket) and len(candidates)<MAX_NODES:
+                candidates.append(bucket[positions[i]])
+                positions[i]+=1
+                added=True
+        if not added:
+            break
+    seen=unique_input_lines
     proxies=[]; names=set(); errors=0
-    if len(candidates)>MAX_NODES:
-        step=len(candidates)/MAX_NODES
-        candidates=[candidates[int(i*step)] for i in range(MAX_NODES)]
     for i,line in enumerate(candidates,1):
         try:
             p=parse_uri(line,i)
@@ -282,13 +302,47 @@ def main():
                 results.append(future.result())
         by_name={r["name"]:r for r in results}
         stable=[p for p in proxies if by_name.get(p["name"],{}).get("stable") is True]
-        preferred_limit=int(os.getenv("PREFERRED_LATENCY_MS", "200"))
-        max_latency=int(os.getenv("MAX_LATENCY_MS", "300"))
+        preferred_limit=int(os.getenv("PREFERRED_LATENCY_MS", "300"))
+        max_latency=int(os.getenv("MAX_LATENCY_MS", "600"))
         # Only stable nodes at or below the hard latency ceiling may be published.
         good=[p for p in stable if by_name[p["name"]].get("delay") is not None
               and by_name[p["name"]]["delay"] <= max_latency]
         if not good:
-            raise SystemExit(f"No stable nodes at or below {max_latency}ms; existing published subscription is left untouched")
+            # Save a diagnostic report even when no node qualifies; the workflow
+            # uploads it on failure and leaves the previously published profile untouched.
+            OUT.mkdir(exist_ok=True)
+            measured = [r["delay"] for r in results if r.get("delay") is not None]
+            ranked = sorted((r for r in results if r.get("delay") is not None),
+                            key=lambda r: (r["delay"], -r["passedChecks"]))
+            failure_report = {
+                "generatedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "sources": source_status, "uniqueInputLines": len(seen),
+                "parsedCandidates": len(proxies), "parseErrors": errors,
+                "testedNodes": len(results),
+                "reachableNodes": sum(1 for r in results if r.get("delay") is not None),
+                "stableNodes": len(stable), "testRounds": 3,
+                "requiredSuccessesPerNode": MIN_SUCCESS_CHECKS,
+                "deduplicatedCandidates": len(proxies),
+                "speedTest": {"url": os.getenv("SPEED_TEST_URL", "https://speed.cloudflare.com/__down?bytes=524288"),
+                              "sampleBytesTarget": 524288, "successful": 0, "failed": 0,
+                              "scope": "Not run because no node passed the stability/latency gate"},
+                "publishedNodes": 0, "maxNodes": MAX_NODES,
+                "maxPublish": int(os.getenv("MAX_PUBLISH", "100")),
+                "preferredLatencyMs": preferred_limit, "hardLatencyCeilingMs": max_latency,
+                "preferredNodes": 0, "backupNodes": 0,
+                "excludedStableOverCeiling": len(stable),
+                "testUrls": test_urls,
+                "latencyMs": ({"min": min(measured), "median": sorted(measured)[len(measured)//2],
+                               "max": max(measured)} if measured else None),
+                "topNodes": [{"name": r["name"], "medianDelayMs": r["delay"],
+                              "passedChecks": r["passedChecks"],
+                              "requiredChecks": r["requiredChecks"]} for r in ranked[:20]],
+                "failureReason": f"No candidates met stability and {max_latency}ms latency requirements; prior subscription retained.",
+                "warning": "Public third-party nodes are untrusted. GitHub-runner tests do not establish usability or speed on the user's device."
+            }
+            (OUT/"status.json").write_text(json.dumps(failure_report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+            print(f"No publishable nodes. Diagnostics saved: tested={len(results)}, stable={len(stable)}, ceiling={max_latency}ms.")
+            raise SystemExit("No nodes met the publication gate; previous subscription was not changed.")
         # Small serial download probe: one 512 KiB sample per latency-qualified candidate.
         # This ranks GitHub-runner throughput only; it is not a phone/network guarantee.
         speed_results = {}
@@ -326,12 +380,12 @@ def main():
           "proxy-groups":[
             {"name":"AUTO","type":"url-test","proxies":[p["name"] for p in good],
              "url":test_urls[0],"interval":300,"tolerance":100},
-            {"name":"FAST_LT_200MS","type":"url-test",
+            {"name":"PREFERRED_LT_300MS","type":"url-test",
              "proxies":[p["name"] for p in good if by_name[p["name"]]["delay"] < preferred_limit] or [good[0]["name"]],
-             "url":test_urls[0],"interval":300,"tolerance":50},
-            {"name":"BACKUP_200_300MS","type":"select",
+             "url":test_urls[0],"interval":300,"tolerance":75},
+            {"name":"BACKUP_300_600MS","type":"select",
              "proxies":[p["name"] for p in good if preferred_limit <= by_name[p["name"]]["delay"] <= max_latency] or [good[0]["name"]]},
-            {"name":"PROXY","type":"select","proxies":["FAST_LT_200MS","AUTO","BACKUP_200_300MS"]+[p["name"] for p in good]},
+            {"name":"PROXY","type":"select","proxies":["PREFERRED_LT_300MS","AUTO","BACKUP_300_600MS"]+[p["name"] for p in good]},
           ],
           "rules":["MATCH,PROXY"]
         }
@@ -345,7 +399,7 @@ def main():
                 "parsedCandidates":len(proxies),"parseErrors":errors,
                 "testedNodes":len(results),"reachableNodes":sum(1 for r in results if r.get("delay") is not None),
                 "stableNodes":sum(1 for r in results if r.get("stable") is True),
-                "testRounds":3,"requiredSuccessesPerNode":6,"deduplicatedCandidates":len(proxies),
+                "testRounds":3,"requiredSuccessesPerNode":MIN_SUCCESS_CHECKS,"deduplicatedCandidates":len(proxies),
                 "speedTest":{"url":speed_url,"sampleBytesTarget":524288,
                              "successful":sum(1 for v in speed_results.values() if v.get("throughputMbps") is not None),
                              "failed":sum(1 for v in speed_results.values() if v.get("throughputMbps") is None),

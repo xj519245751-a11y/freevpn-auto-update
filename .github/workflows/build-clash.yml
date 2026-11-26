@@ -50,10 +50,18 @@ jobs:
         env:
           MAX_NODES: "250"
           MAX_PUBLISH: "100"
-          PREFERRED_LATENCY_MS: "200"
-          MAX_LATENCY_MS: "300"
+          MIN_SUCCESS_CHECKS: "4"
+          PREFERRED_LATENCY_MS: "300"
+          MAX_LATENCY_MS: "600"
           TEST_WORKERS: "8"
         run: python .github/scripts/build_profile.py
+      - name: Upload diagnostics even when screening fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vpn-screening-diagnostics
+          path: dist/status.json
+          if-no-files-found: ignore
       - name: Validate generated YAML and report
         run: |
           python - <<'PY'
@@ -67,8 +75,8 @@ jobs:
           assert s["publishedNodes"] == len(p["proxies"])
           assert s["publishedNodes"] <= s["stableNodes"], "published nodes must be a subset of stable nodes"
           assert s["testRounds"] == 3
-          assert s["hardLatencyCeilingMs"] == 300, "unexpected latency ceiling"
-          assert s["preferredLatencyMs"] == 200, "unexpected preferred latency target"
+          assert s["hardLatencyCeilingMs"] == 600, "unexpected latency ceiling"
+          assert s["preferredLatencyMs"] == 300, "unexpected preferred latency target"
           assert s["latencyMs"]["max"] <= 300, "published node exceeds latency ceiling"
           assert s["preferredNodes"] + s["backupNodes"] == s["publishedNodes"]
           assert isinstance(s.get("speedTest"), dict), "missing throughput test report"

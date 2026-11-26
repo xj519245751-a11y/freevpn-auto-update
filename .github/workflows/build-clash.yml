@@ -87,7 +87,7 @@ jobs:
       - name: Publish generated profile
         run: |
           mkdir -p public
-          cp dist/clash.yaml public/clash.yaml
+          cp dist/clash.yaml public/clash-screened.yaml
           cp dist/status.json public/status.json
           touch public/.nojekyll
           git config user.name "github-actions[bot]"

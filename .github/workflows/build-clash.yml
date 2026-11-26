@@ -84,6 +84,7 @@ jobs:
           assert all("throughputMbps" in n for n in s.get("topNodes", [])), "missing throughput fields"
           print("YAML valid; nodes:", len(p["proxies"]), "speed probes:", s["speedTest"])
           PY
+      # The screened output is deliberately separate from the legacy subscription.
       - name: Publish generated profile
         run: |
           mkdir -p public

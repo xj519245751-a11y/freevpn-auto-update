@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-26T08:24:17Z",
+  "generatedAt": "2026-11-28T00:10:58Z",
   "sources": [
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/1.txt",
       "status": "ok",
-      "entries": 5251
+      "entries": 5055
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/2.txt",
@@ -14,22 +14,22 @@
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/3.txt",
       "status": "ok",
-      "entries": 9823
+      "entries": 9761
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/4.txt",
       "status": "ok",
-      "entries": 301
+      "entries": 297
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/5.txt",
       "status": "ok",
-      "entries": 304
+      "entries": 340
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/6.txt",
       "status": "ok",
-      "entries": 123
+      "entries": 110
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/7.txt",
@@ -39,17 +39,17 @@
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/8.txt",
       "status": "ok",
-      "entries": 279
+      "entries": 270
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/9.txt",
       "status": "ok",
-      "entries": 246
+      "entries": 250
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/10.txt",
       "status": "ok",
-      "entries": 8463
+      "entries": 8082
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/11.txt",
@@ -59,47 +59,47 @@
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/12.txt",
       "status": "ok",
-      "entries": 475
+      "entries": 507
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/13.txt",
       "status": "ok",
-      "entries": 1015
+      "entries": 835
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/14.txt",
       "status": "ok",
-      "entries": 17820
+      "entries": 18276
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/15.txt",
       "status": "ok",
-      "entries": 455
+      "entries": 466
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/16.txt",
       "status": "ok",
-      "entries": 11
+      "entries": 8
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/17.txt",
       "status": "ok",
-      "entries": 1569
+      "entries": 1424
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/18.txt",
       "status": "ok",
-      "entries": 210
+      "entries": 205
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/19.txt",
       "status": "ok",
-      "entries": 1852
+      "entries": 1683
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/20.txt",
       "status": "ok",
-      "entries": 2355
+      "entries": 2372
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/21.txt",
@@ -109,17 +109,17 @@
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/22.txt",
       "status": "ok",
-      "entries": 218
+      "entries": 206
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/23.txt",
       "status": "ok",
-      "entries": 1450
+      "entries": 215
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/24.txt",
       "status": "ok",
-      "entries": 777
+      "entries": 760
     },
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/25.txt",
@@ -129,7 +129,7 @@
     {
       "url": "https://raw.githubusercontent.com/aneek0/goida-vpn-configs/refs/heads/main/githubmirror/26.txt",
       "status": "ok",
-      "entries": 4334
+      "entries": 4321
     },
     {
       "url": "https://radarhub.top/v2ray.txt",
@@ -139,27 +139,27 @@
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_SS%2BAll_RUS.txt",
       "status": "ok",
-      "entries": 60
+      "entries": 203
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS.txt",
       "status": "ok",
-      "entries": 530
+      "entries": 233
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt",
       "status": "ok",
-      "entries": 148
+      "entries": 136
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
       "status": "ok",
-      "entries": 99
+      "entries": 70
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-CIDR-RU-all.txt",
       "status": "ok",
-      "entries": 104
+      "entries": 71
     },
     {
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/WHITE-CIDR-RU-checked.txt",
@@ -172,54 +172,62 @@
       "entries": 0
     }
   ],
-  "uniqueInputLines": 459096,
-  "parsedCandidates": 231,
+  "uniqueInputLines": 457205,
+  "parsedCandidates": 230,
   "parseErrors": 18,
-  "testedNodes": 231,
-  "reachableNodes": 11,
-  "stableNodes": 8,
+  "testedNodes": 230,
+  "reachableNodes": 7,
+  "stableNodes": 7,
   "testRounds": 3,
   "requiredSuccessesPerNode": 6,
-  "deduplicatedCandidates": 231,
+  "deduplicatedCandidates": 230,
   "speedTest": {
     "url": "https://speed.cloudflare.com/__down?bytes=524288",
     "sampleBytesTarget": 524288,
-    "successful": 2,
+    "successful": 3,
     "failed": 0,
     "scope": "GitHub Actions runner only; not representative of the user's device/network"
   },
   "nearDuplicateGroups": [],
   "nearDuplicatePolicy": "diagnostic only; candidates are retained until device-side validation",
-  "publishedNodes": 2,
+  "publishedNodes": 3,
   "maxNodes": 250,
   "maxPublish": 100,
   "preferredLatencyMs": 200,
   "hardLatencyCeilingMs": 300,
   "preferredNodes": 2,
-  "backupNodes": 0,
-  "excludedStableOverCeiling": 6,
+  "backupNodes": 1,
+  "excludedStableOverCeiling": 4,
   "testUrls": [
     "https://www.gstatic.com/generate_204",
     "https://cp.cloudflare.com/generate_204"
   ],
   "latencyMs": {
-    "min": 118,
-    "median": 156,
-    "max": 156
+    "min": 53,
+    "median": 137,
+    "max": 274
   },
   "topNodes": [
     {
-      "name": "@Vip_Security join us - 166",
-      "medianDelayMs": 118,
-      "throughputMbps": 2.353,
+      "name": "vmess-240",
+      "medianDelayMs": 53,
+      "throughputMbps": 11.954,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
     },
     {
-      "name": "[9759][US][0][SS][None][ext_raw.githubusercontent.com][",
-      "medianDelayMs": 156,
-      "throughputMbps": 5.979,
+      "name": "[9105][US][0][SS][None][Outline_Vpn][2026-11-06][2026-1",
+      "medianDelayMs": 137,
+      "throughputMbps": 16.675,
+      "speedTestError": null,
+      "passedChecks": 6,
+      "requiredChecks": 6
+    },
+    {
+      "name": "vmess-219",
+      "medianDelayMs": 274,
+      "throughputMbps": 12.482,
       "speedTestError": null,
       "passedChecks": 6,
       "requiredChecks": 6
